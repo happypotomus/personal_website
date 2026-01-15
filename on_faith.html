@@ -1,0 +1,806 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>on faith</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="243bae43-8dc8-80b7-be86-d4535485101d" class="page sans"><header><h1 class="page-title" dir="auto">on faith</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="244bae43-8dc8-801d-9d1e-fe7e8979f683" class=""><strong>“Did you convert to Islam?”</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-808d-8cec-c5487a1567de" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80d6-bced-c5805dbba4c6" class="">I get this question a lot, given I’m now married to a muslim woman. The answer isn’t a simple yes or no. What I hope to do with this essay is walk you through why that is.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80db-9adc-d00602550d9d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80b4-8595-e71898105a57" class="">One of the reasons I hesitate to give a clear answer is because I’ve always hated being <strong>put in a box</strong>. One of the greatest gifts my parents gave me was the space to think for myself, to question, explore, and arrive at my own truths. Anytime I feel pushed into a rigid identity or expected to adopt one, I tend to resist.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-805f-ad94-d69309d8578a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8062-aae7-e72fcc335f9b" class="">So for me to say “yes” would feel like I’m inviting people to label me, to assume what I should or shouldn’t do, believe, or become. And I’ve never operated well in that kind of framework.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80a0-9ed8-f92addcd12c8" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c9-b046-dc08396d1d92" class="">I’ve actually been around Islam for most of my life. I spent 15 years living in Dubai. I learned to read Arabic. I had mostly Muslim friends. I experienced Ramadan firsthand, waking up to the call to prayer echoing through the streets, watching people fast, break bread, gather in prayer.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bf-b8f9-d2ccb72dfe4a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8031-bdc3-ead939fb1dfe" class="">But despite all of that, I never really took the time to understand the why behind the practices. And truthfully, neither did most people around me. Islam, for many of my peers, was inherited, rituals passed down from parents, followed without reflection. Praying five times a day, fasting during Ramadan, avoiding alcohol, they were seen as obligations, not invitations.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c8-9914-ef67ebd10cf2" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8047-9cfb-cc59fdb13216" class="">In fact, a lot of the relationships I witnessed between people and their faith were built on <strong>fear</strong>. Islam was presented as a strict rulebook: follow it or face punishment. Obey, or risk hell. That version of religion never sat right with me.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8039-92d7-d3cff6329aa0" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-800d-b88b-c54e2ac50575" class="">So when I was told I’d need to convert to Islam in order to marry Manal, it threw me into a bit of a personal storm. Not because I was unwilling to explore, but because I refused to say “yes” to something I hadn’t genuinely thought through.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-805a-9b15-f0b11f16297c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8091-ad6e-e4f3a077fb0a" class=""><strong>📖 Qur’an 2:221 — Marriage to Polytheists (Mushrikeen)</strong></p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-809d-8121-ffc0643f0d5f" class="">Arabic:<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c2-9a6e-c5e56167db70" class=""><strong>وَلَا تُنكِحُوا الْمُشْرِكِينَ حَتَّىٰ يُؤْمِنُوا ۚ وَلَعَبْدٌ مُّؤْمِنٌ خَيْرٌ مِّن مُّشْرِكٍ وَلَوْ أَعْجَبَكُمْ ۗ</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8029-81a8-f8f85cd999af" class=""><strong>Translation:</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8011-aa5e-ff9b7b011ba1" class=""><em>“And do not marry polytheistic men [to your women] until they believe. A believing slave is better than a polytheist, even though he may please you.”</em></p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-802f-8d89-e845b75f2c87" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-806b-8ae0-ea3148b46333" class="">When I first read the passage above, I was initially quite thrown off by it. It felt riddled with blind faith, which goes completely against how I adopt beliefs. (I’ve later on understood this verse differently, more on this later)</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8006-88de-c1380cb72ff7" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8066-8815-db2f5c095f33" class="">Nonetheless, it felt like I had two options: either <strong>reject Islam</strong> and risk creating tension within the family, or <strong>blindly accept it</strong> just to go through with the nikah, (muslim marriage) but in doing so, compromise my values of honesty, integrity, and authenticity.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ca-9083-d86c6e2e4e66" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80f1-8f1d-c512f73937e9" class="">So I chose a third path.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80d3-80c7-d14c29f615e8" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80fb-aec3-f87d0e9321ed" class="">I decided to take the time to understand Islam from <strong>first principles, </strong>not through the lens of an imam, cultural dogma, or pressure, but by going directly to the text itself. To read the Quran with fresh eyes. To reflect deeply. And then, only if it resonated, to make an informed and intentional choice to “convert.” (You’ll see why I put “convert” in quotes by the end of this piece.)</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80d4-a891-ec8defa51e98" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="244bae43-8dc8-8048-8967-c10ccea0be1c" class="">Starting from first principles</h3></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-805a-bb3b-ccf4b9ffe534" class="">One of the most valuable tools I learned as an engineer is the ability to think from <strong>first principles</strong>. It’s a way of approaching any problem or complex topic by stripping it down to its <strong>most fundamental truths</strong>, then reasoning upward from there, not relying on assumptions or inherited ideas, but starting fresh.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8062-8c8b-c989c9f49e5d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8021-8083-e66e0b98ed27" class="">That’s exactly how I wanted to approach my exploration of Islam.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80b1-9b9a-f81e654c7238" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8009-864a-c5d12779eb72" class="">And this is where GPT came in. Without it, my only real option would have been to learn through the guidance of an imam. But my concern with that approach is this: imams often interpret the Quran through traditional or cultural frameworks, and that, in my view, is one of the greatest challenges within the religion today. When the Quran is filtered through dogma or rigid tradition, I believe it becomes harder to access its true essence. You end up engaging more with <strong>someone else’s opinion about God</strong>, rather than forming a direct relationship with the divine yourself. That risks turning faith into a pursuit of approval, rather than understanding.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8079-ac04-c5778f91815c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80d7-9e37-d44430574101" class="">That said, I’m not naive about the limitations of AI either. ChatGPT, while powerful, has its flaws, it can fabricate information or reinforce whatever argument you present, which runs the risk of pulling you away from the Quran’s actual message.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8096-9ce9-f0e6fa8330c5" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-804b-8627-d5ac22f254fd" class="">So here’s how I approached my discovery process:</p></div><div style="display:contents" dir="auto"><ol type="1" id="244bae43-8dc8-80af-94cf-cc9f2f4ecb1a" class="numbered-list" start="1"><li>For all my questions, I asked ChatGPT to build arguments <strong>strictly based on what’s in the Quran</strong>, citing verses directly, no outside commentary or assumptions.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="244bae43-8dc8-8075-986f-c4842f5f605d" class="numbered-list" start="2"><li>When I was forming my own reflections or philosophical takes, I had it <strong>critique my reasoning,</strong> helping me stay grounded in the actual text, not just personal projections.</li></ol></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8062-9d2a-d6355bfaca9f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8006-a604-debe15120d1f" class="">Now that you have the context, here’s how things unfolded.</p></div><div style="display:contents" dir="auto"><h2 id="244bae43-8dc8-80d4-b6c6-c7ca2919e4d0" class="">The fundamentals of Islam</h2></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8012-bc32-ceeb45a73464" class=""><strong>📖 Surah Al-Baqarah (2:177)</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c3-aa56-f4fde15bdcc0" class=""><strong>Arabic:</strong></p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-807a-bc66-c625ac73c034" class="">لَّيْسَ الْبِرَّ أَن تُوَلُّوا وُجُوهَكُمْ قِبَلَ الْمَشْرِقِ وَالْمَغْرِبِ، وَلَٰكِنَّ الْبِرَّ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَالْمَلَائِكَةِ وَالْكِتَابِ وَالنَّبِيِّينَ، وَآتَى الْمَالَ عَلَىٰ حُبِّهِ ذَوِي الْقُرْبَىٰ وَالْيَتَامَىٰ وَالْمَسَاكِينَ وَابْنَ السَّبِيلِ وَالسَّائِلِينَ وَفِي الرِّقَابِ، وَأَقَامَ الصَّلَاةَ وَآتَى الزَّكَاةَ، وَالْمُوفُونَ بِعَهْدِهِمْ إِذَا عَاهَدُوا، وَالصَّابِرِينَ فِي الْبَأْسَاءِ وَالضَّرَّاءِ وَحِينَ الْبَأْسِ، أُولَٰئِكَ الَّذِينَ صَدَقُوا، وَأُولَٰئِكَ هُمُ الْمُتَّقُونَ</blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8013-8626-d23d8e20643d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80d3-b089-dd6ef82cdfd5" class=""><strong>Translation:</strong></p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8091-af52-cb817c17c89f" class="">Righteousness is not in turning your faces toward the east or the west, but true righteousness is in one <strong>who believes in Allah</strong>, <strong>the Last Day</strong>, <strong>the angels</strong>, <strong>the Book</strong>, and <strong>the prophets</strong>. It is in those who give their wealth, despite loving it, to relatives, orphans, the needy, the traveler, those who ask for help, and for freeing those in bondage. It is in those who establish prayer and give zakah, who fulfill their promises when they make them, and who are patient in times of poverty, hardship, and during moments of struggle. These are the ones who have been true, and these are the ones who are mindful of God.”</blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ef-827c-e0d96375c4a2" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80f5-a7fd-e5530680e5b9" class="">To me, the purpose of religion is simple: <strong>to serve as a guide for becoming the highest version of yourself</strong>. And the Quran, in many ways, feels like a battle-tested guide, one that has endured for centuries and continues to bring millions into the religion every year. If it can have that scale of profound impact, it is worth investigate what within it enables that to happen.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80e7-9fa9-ec39947591ee" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8092-9243-f1360e273110" class="">My intention here is to investigate each core belie<strong>f</strong> in detail, to clarify whether and how my understanding of life aligns with what the Quran teaches. From there, I’ll also investigate what it means to practice religion in accordance with <em>Arkān al-Islām</em> (the Five Pillars of Islam), and if that makes sense to me.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8012-841d-ffaa2e45f4c8" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="243bae43-8dc8-8052-ab9b-db8c0627092f" class="">Belief in Allah</h3></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8017-8754-ec1c0a19afb5" class=""><strong>📖 Surah Al-Hashr (59:22–24)</strong></p></div><div style="display:contents" dir="auto"><hr id="244bae43-8dc8-80d7-9f89-ecffcf74cc29"/></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8044-8e4e-c1984daa9a88" class="">٢٢<div style="display:contents" dir="auto"><p id="244bae43-8dc8-809b-b0d4-f5a38c28c1aa" class="">هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَـٰهَ إِلَّا هُوَ ۖ عَٰلِمُ ٱلْغَيْبِ وَٱلشَّهَـٰدَةِ ۖ هُوَ ٱلرَّحْمَـٰنُ ٱلرَّحِيمُ</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80db-b582-c0b871ba7223" class=""><strong>٢٣</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-806c-be2f-c950f1258ce2" class="">هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْمَلِكُ ٱلْقُدُّوسُ ٱلسَّلَـٰمُ ٱلْمُؤْمِنُ ٱلْمُهَيْمِنُ ٱلْعَزِيزُ ٱلْجَبَّارُ ٱلْمُتَكَبِّرُ ۚ سُبْحَـٰنَ ٱللَّهِ عَمَّا يُشْرِكُونَ</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-809c-a0eb-d6d2f7e02ad8" class=""><strong>٢٤</strong></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-808d-80d1-d9da2d2ffb1b" class="">هُوَ ٱللَّهُ ٱلْخَـٰلِقُ ٱلْبَارِئُ ٱلْمُصَوِّرُ ۖ لَهُ ٱلْأَسْمَآءُ ٱلْحُسْنَىٰ ۚ يُسَبِّحُ لَهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ ۚ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ</p></div></blockquote></div><div style="display:contents" dir="auto"><hr id="244bae43-8dc8-80f3-9162-d5d666657e1b"/></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8018-907f-c69934c96bd7" class="">22<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80be-97ff-ce4b31b0ba66" class=""><em>He is Allah, other than whom there is no deity, the Knower of the unseen and the witnessed. He is the Entirely Merciful, the Especially Merciful.</em></p></div></blockquote></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8039-8f24-c719b65b5127" class="">23<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80fa-ba12-effe46163ef7" class=""><em>He is Allah, other than whom there is no deity, the Sovereign, the Pure, the Perfection, the Bestower of Faith, the Overseer, the Exalted in Might, the Compeller, the Superior. Exalted is Allah above whatever they associate with Him.</em></p></div></blockquote></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8080-910b-f2f80bdc6651" class="">24<div style="display:contents" dir="auto"><p id="244bae43-8dc8-802c-8dc9-db4f3628040d" class=""><em>He is Allah, the Creator, the Inventor, the Fashioner; to Him belong the best names. Whatever is in the heavens and earth is exalting Him. And He is the Exalted in Might, the Wise.</em></p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ce-8f9c-d4ca7719d148" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ed-87fc-f228ef5de132" class=""><strong>Shahid Baba</strong> is someone I respect deeply, not just because he’s Manal’s dad, but because of the way he approaches life, spirit, faith, and mysticism. He carries a sense of curiosity, but not blind faith. He asks questions, seeks coherence, and genuinely tries to understand. That’s why a conversation I had with him 1 am in the morning last year, before our wedding day, completely shifted how I view God, Islam, and religion.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-801a-b3e7-da07d430ac63" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8019-913e-ce9dff987811" class="">From that conversation, and through my own lens as a man of science, here’s how I’ve come to understand <strong>God</strong> and <strong>Allah</strong>:</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-802d-9e0b-fe2d5ab10ff6" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-809e-88b5-d38db555868c" class="">There can only be one originating cause of the universe, in the same way there was only one Big Bang. That event was not just an explosion. It was the start of the laws of physics, space, time, and everything that followed. If the universe developed from that initial state into the complexity we see today, then whatever set those laws in motion is the fundamental creative force. That is what I refer to as God, or in Arabic, Allah.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80d1-b760-e13c5f8bb2fa" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-804a-9354-ddb8a42a523f" class="">What stands out to me is the consistency of this unfolding. Humans share the same basic anatomy and the same underlying brain architecture. The laws of physics hold everywhere and do not fail. The universe does not behave like a random accident. It behaves like a system with order, constraints, and direction. This does not imply that every event is predetermined, but it does imply that creation operates within a coherent structure.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8055-b2ab-f3565b4bea94" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8018-aa0c-d456ed5cedc5" class="">For that reason, I align with belief in God. Not as a figure with a form or personality, but as the force behind the existence and evolution of everything. The creative structure that makes the universe intelligible.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80de-bf27-f46cc89fe749" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="243bae43-8dc8-8095-8ca2-ec6004e94ff3" class="">Belief in the Day of Judgement (and the afterlife)</h3></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80fe-8dff-ee45f3b2a5a8" class="">&quot;اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۚ لَيَجْمَعَنَّكُمْ إِلَىٰ يَوْمِ الْقِيَامَةِ لَا رَيْبَ فِيهِ ۚ وَمَنْ أَصْدَقُ مِنَ اللَّهِ حَدِيثًا&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80f3-bfbe-dcbbac1a0540" class=""><em>“Allah — there is no deity except Him. He will surely assemble you for [account on] the Day of Resurrection, about which there is no doubt. And who is more truthful than Allah in statement?”</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-806e-bb3d-ea259d825b39" class="">— Surah An-Nisa (4:87)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8008-9349-ea1861615ab2" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80d5-a430-c538174d7daa" class="">&quot;وَنَضَعُ الْمَوَازِينَ الْقِسْطَ لِيَوْمِ الْقِيَامَةِ فَلَا تُظْلَمُ نَفْسٌ شَيْئًا...&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-805d-9e9e-c20b386effe4" class=""><em>“We shall set up the scales of justice for the Day of Resurrection, so no soul will be wronged in the least…”</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ec-9797-e0592fde77c7" class="">— Surah Al-Anbiya (21:47)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8031-9427-cb73c240ada6" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-805f-af52-c706c53bacd6" class="">وَبَشِّرِ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ أَنَّ لَهُمْ جَنَّـٰتٍۢ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَـٰرُ ۖ كُلَّمَا رُزِقُوا۟ مِنْهَا مِن ثَمَرَةٍۢ رِّزْقًۭا قَالُوا۟ هَـٰذَا ٱلَّذِى رُزِقْنَا مِن قَبْلُ وَأُتُوا۟ بِهِۦ مُتَشَـٰبِهًۭا ۖ وَلَهُمْ فِيهَآ أَزْوَٰجٌۭ مُّطَهَّرَةٌۭ ۖ وَهُمْ فِيهَا خَـٰلِدُونَ<br/><br/>&quot;And give good news to those who believe and do righteous deeds that they will have gardens beneath which rivers flow. Every time they are provided with fruit therefrom, they will say, &#x27;This is what we were provided with before.&#x27; And it is given to them in likeness. And they will have therein purified spouses, and they will abide therein eternally.<br/>— Surah Al-Baqarah (2:25)</blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8009-a2c2-e7cf91bccc7d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-807d-8046-e4b86f7b1dde" class="">The belief in a Day of Judgment was always difficult for me. For most of my life, I assumed that death was simply the end of the story. I also struggled with the idea of shaping an entire life around the expectation of paradise. From an engineering or scientific perspective, that framing never felt coherent.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80bd-910d-d4341a517baf" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-806b-a85f-e007402036e1" class="">Over time, my understanding of it changed. I no longer think of the Day of Judgment as a scene where a figure evaluates every action I took. I think of it as something far more grounded: the final moment of reflection at the end of a life. The point where I would look back and ask whether my actions, intentions, and choices aligned with truth, generosity, and integrity. It is not religious scorekeeping. It is an honest assessment of whether I lived in accordance with the principles I claimed to value.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80a5-8f3e-f607f003c25a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8029-b88f-db89ee726674" class="">And just as I see creation unfolding through structure and law, I think the state of my mind at the end matters. A life lived in alignment usually produces clarity rather than regret. Peace rather than confusion. Whatever happens after death, the final quality of consciousness is not meaningless. It influences how the effects of my life continue into the world — through the people I impacted, the problems I helped solve, the ideas I contributed, and the character I embodied.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80dd-bea0-e6d3144336e4" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80bd-b62f-dc9562f9c8b1" class="">In that sense, the “Day of Judgment” is not a distant event. It is the inevitable moment when the story of my life is evaluated by the only person who can fully account for it: me.</p></div><div style="display:contents" dir="auto"><h3 id="243bae43-8dc8-80fc-9e4d-ffc0c1757710" class="">Belief in Angels and Devils (added commentary on heaven and hell)</h3></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80d4-9078-cfe34918b2eb" class=""><strong>&quot;لَا يَعْصُونَ اللَّهَ مَا أَمَرَهُمْ وَيَفْعَلُونَ مَا يُؤْمَرُونَ&quot;</strong><div style="display:contents" dir="auto"><p id="244bae43-8dc8-804a-9bd7-ce63bf5ec755" class=""><em>&quot;They (angels) do not disobey Allah in what He commands them but do what they are commanded.&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ac-b0d0-f7a088d537af" class="">— Surah At-Tahrim (66:6)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8074-b2e9-c23b85ea6d7d" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80e5-ae93-d54b7da597d7" class="">&quot;إِنَّ ٱلشَّيْطَٰنَ لَكُمْ عَدُوٌّ فَٱتَّخِذُوهُ عَدُوًّا ۚ إِنَّمَا يَدْعُوا۟ حِزْبَهُۥ لِيَكُونُوا۟ مِنْ أَصْحَـٰبِ ٱلسَّعِيرِ&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-8044-b592-ecd592d7ee89" class=""><em>“Indeed, Satan is an enemy to you; so take him as an enemy. He only invites his followers to become companions of the Blaze.”<br/>— Surah Fatir (35:6)</em></p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bf-842a-dd2307262b2b" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8015-8ded-feb234f749e7" class="">&quot;وَقَالَ ٱلشَّيْطَٰنُ لَمَّا قُضِىَ ٱلْأَمْرُ إِنَّ ٱللَّهَ وَعَدَكُمْ وَعْدَ ٱلْحَقِّ وَوَعَدتُّكُمْ فَأَخْلَفْتُكُمْ ۖ وَمَا كَانَ لِىَ عَلَيْكُم مِّن سُلْطَـٰنٍ إِلَّآ أَن دَعَوْتُكُمْ فَٱسْتَجَبْتُمْ لِى ۖ&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-8063-9644-fc38d2e477eb" class=""><em>“And Satan will say when the matter is decided, ‘Indeed, Allah promised you the promise of truth. I too promised you — but I betrayed you. I had no authority over you, except that I invited you and you responded to me...’”</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8091-9838-dfe942563c7f" class="">— Surah Ibrahim (14:22)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ad-a8e2-fbf721156d0d" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-808c-99f6-d4b3740a7ec6" class="">&quot;هَـٰذَانِ خَصْمَانِ ٱخْتَصَمُوا۟ فِى رَبِّهِمْ ۖ فَٱلَّذِينَ كَفَرُوا۟ قُطِّعَتْ لَهُمْ ثِيَابٌۭ مِّن نَّارٍۢ ۖ يُصَبُّ مِن فَوْقِ رُءُوسِهِمُ ٱلْحَمِيمُ&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80fb-a868-fc45281ca950" class=""><em>&quot;These are two adversaries who have disputed about their Lord. But those who disbelieved — garments of fire will be cut out for them; boiling fluid will be poured down over their heads.&quot;<br/><br/>— Surah Al-Hajj (22:19)</em></p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-804a-960d-f6d60af1c779" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8003-bcb7-fe91293624a7" class="">As I spend more time with the Quran, I’ve come to see that its language operates on two levels. Some verses use metaphor and imagery, prompting reflection and interpretation. Others are straightforward and meant as direct guidance. </p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80b8-ac71-ce477bac4013" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80ef-96c1-f17b28f8418d" class="">I see the references to angels and devils as metaphors for higher and lower tendencies within human beings.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-805b-b01c-e0917380fa85" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8013-ac69-dbafb55fd681" class="">Compassion, honesty, patience, and generosity represent higher forces.<br/>Greed, ego, cruelty, and deception represent lower ones.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80cf-a966-c396b7f58d9a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80aa-b972-c46493e4950b" class="">Every person contains both. That is a basic fact of human psychology. The real question is which forces we allow to direct our behaviour. When someone consistently follows their lower impulses, the result is often anger, resentment, and a sense of internal conflict. That state feels like a version of hell, not because of external punishment, but because the mind becomes trapped in its own negativity.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8089-a1b7-d90e1e9c30c7" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-807f-8229-d0c61e870f1e" class="">The same logic applies to the higher forces. Acting from truth, generosity, and patience creates coherence within the mind. It produces a kind of clarity and ease. You feel aligned rather than conflicted. If there is a practical meaning to “heaven,” it is that state of internal order, the experience of acting in harmony with values that actually improve life.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-802c-a1ae-cb8d1a8328f7" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8068-b737-e3416fa27d80" class="">When understood this way, heaven and hell don’t feel like fictional ideas. They are conditions generated by the choices we make and the qualities we cultivate. They are consequences that appear in real time, not only in the afterlife.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bd-94f0-dc2f4f74582f" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="243bae43-8dc8-8076-86d1-f4948e157609" class="">Belief in the Books, Muhammad as the final messenger, in Qadar (Divine Decree)</h3></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c2-ac3c-cd2da90e13f6" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-804b-be40-ce003e5eb369" class="">مَّا كَانَ مُحَمَّدٌ أَبَآ أَحَدٍۢ مِّن رِّجَالِكُمْ وَلَـٰكِن رَّسُولَ ٱللَّهِ وَخَاتَمَ ٱلنَّبِيِّۦنَ ۗ وَكَانَ ٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمًۭا<br/>&quot;Muhammad is not the father of any of your men, but he is the Messenger of Allah and the seal of the prophets. And Allah is ever, of all things, Knowing.&quot;<br/>— Surah Al-Ahzab (33:40)</blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-808c-a894-e144112a305e" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-807a-9c87-ee53f1947f2a" class="">&quot;إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-809b-9659-c4bb4ebf5dc4" class=""><em>&quot;Indeed, We have created everything according to a measure.&quot;<br/> — Surah Al-Qamar (54:49)</em></p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-808e-a4d6-fd80ffb5331d" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8017-bc61-e59121c33918" class="">&quot;نَزَّلَ عَلَيْكَ ٱلۡكِتَٰبَ بِٱلۡحَقِّ مُصَدِّقٗا لِّمَا بَيۡنَ يَدَيۡهِۖ وَأَنزَلَ ٱلتَّوۡرَىٰةَ وَٱلۡإِنجِيلَ&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80a6-8e87-dc7f2ae9bbf7" class=""><em>&quot;He has sent down upon you the Book in truth, confirming what was before it. And He revealed the Torah and the Gospel.&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80b1-80cf-c328df4cbef9" class="">— Surah Al-Imran (3:3)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ac-8afa-fdef41f53e4f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80cf-95af-daddd2617692" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ea-86a2-ea0789ab0bc6" class="">One of the hardest things for me when I first started exploring Islam was getting past the noise. The press, the rules, the cultural baggage, so much of it felt harsh, especially around how women were treated, or the way obedience seemed to be valued over inner understanding. I couldn’t resonate with a version of religion that felt like it was more about control than truth.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8022-8c84-c772eb719412" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80b5-8bdb-cb4f6420a8f5" class="">Many people don’t realize that the Quran is primarily a book of guidance, revealed within a very specific historical context. Some legal instructions can feel harsh or outdated when viewed through a modern lens, but their purpose and the conditions of 7th-century Arabia matter when interpreting them. Often, the intention behind an instruction was protective, not punitive.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8075-bffe-d27bdbd62d29" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80bc-a21e-c8711ab867d5" class="">For example, the verses permitting a man to marry multiple women were revealed during a period of intense conflict. Early Muslims had suffered heavy losses in battles, leaving many women widowed and without financial support in a society where men were typically responsible for providing for the household. In that context, the allowance for polygyny functioned as a social welfare mechanism, a way to ensure widows and orphans were cared for. The Quran even emphasizes that justice must be upheld in such marriages and cautions men against taking multiple wives if they cannot treat them fairly.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8009-8cd4-f28103fd31cc" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8066-9a67-d73cf684a551" class="">It’s when I came to realize is that the Quran itself isn’t the problem, the interpretations are. Over time, ruling classes, governments, clergy, and religious institutions used the Quran to enforce obedience, not expand awareness. The message was mediated through imams and scholars who acted like gatekeepers, often bringing ego, politics, and fear into something that was meant to be pure and elevating. When access to divine truth is controlled like that, it’s not surprising that lower forces creep in.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80e5-9eb7-c59b021a3f33" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80e0-aeda-d71e174b55d0" class="">But when I actually started reading the Quran for myself, things shifted. Going back to first principles, that religion exists to guide us toward becoming our highest selves, the Quran fulfills that surprisingly well. It speaks in the language of principles, reflection, consequence, and alignment. It does not read like mythology. It feels like a framework for living in truth. To me, the Quran reads like poetry. And like any deep poetry, it is meant to be sat with, questioned, and interpreted through lived experience.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8088-bdfd-e94e0d68c994" class=""><br/>Additionally, like other messengers such as Jesus, historical accounts of the Prophet Muhammad highlight how deeply he embodied the values found in the Quran: patience, clarity, humility, and integrity. Whether every account is perfectly accurate or not, the qualities they describe are the ways of living I aspire toward. I am not inspired by him out of obligation. I follow his example because his teachings are practical, grounded, and elevating. They point toward a way of life that strengthens character and makes people better human beings.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c3-b481-d6d9803b3ecd" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-805d-a94b-fff82d86e476" class="">All of this, the book, the messenger, and the trajectory of my own life, fits into a larger structure. This is how I understand the concept of “Qadar”. It does not mean life is predetermined in a rigid, scripted way. It means that choice, chance, and circumstance all operate within a coherent framework. The laws of physics, the direction of entropy, the emergence of consciousness, and the conditions I was born into do not appear random. They point to an underlying order.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-802d-aa3d-e524f22a567b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-800a-8d41-ea023853fff7" class="">So I act as if my choices matter beyond the immediate moment. Not because I am afraid of consequences, but because my decisions participate in a larger moral structure. A system where intention and action shape who I become. I am responsible for the trajectory I create, one choice at a time.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8086-8965-c220f9159091" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="243bae43-8dc8-80f6-a2f7-d03922aa8bbf"/></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80db-a1ce-c000cbc6f01d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8057-9845-c5c1b2f40962" class="">As I mentioned earlier, the core intention of Islam to me, is not to practice the religion for the sake of ritual alone. It’s to use its beliefs and practices as a guide for living a rich, fulfilling life, grounded in truth, purpose, and the highest version of consciousness I can embody.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bf-a938-ea60cd3e002f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80a3-a936-d2d28c613c57" class="">Growing up, I saw many of my Muslim friends follow the rituals to the letter, praying, fasting, avoiding alcohol, but rarely questioning why those practices existed in the first place. Maybe, in some ways, doing the practice, even without understanding, is still better than not doing it at all. But for me, that’s not enough.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80b2-beb2-fb32ef1c4c11" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80dd-a5e4-cb6aae2ec2cb" class="">I want to examine every practice deeply, not to find loopholes, but to understand the essence of it. </p></div><div style="display:contents" dir="auto"><h2 id="243bae43-8dc8-8050-9974-c9d39621602b" class="">The 5 Pillars</h2></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ca-95b5-cfefae8a5c59" class="">It’s worth noting that the Quran doesn’t explicitly list out “five pillars.” These practices were identified and organized by scholars over time (and documented in hadiths), drawn from repeated messages throughout the Quran and the life of the Prophet. They’re not a checklist, but a framework distilled from deeper principles. </p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-804f-a859-c17fd369c1a4" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="244bae43-8dc8-8080-b669-c72cd4edc5a3" class="">Salah (Prayer)</h3></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-808e-9838-cd7878fea7df" class=""><strong>&quot;أَقِمِ ٱلصَّلَوٰةَ لِذِكْرِى&quot;</strong><div style="display:contents" dir="auto"><p id="244bae43-8dc8-809b-855a-d46feb81d974" class=""><em>&quot;Establish prayer to remember Me.&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8019-9f04-e42b7c4300b4" class="">— Surah Taha (20:14)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8041-8aa1-c53cb7b81739" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-805f-b2a2-e37921351e83" class="">&quot;يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ إِذَا قُمْتُمْ إِلَى ٱلصَّلَوٰةِ فَٱغْسِلُوا۟ وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى ٱلْمَرَافِقِ...&quot;<div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ca-b266-e3c31694d98b" class=""><em>&quot;O you who believe! When you rise to pray, wash your faces and your hands up to the elbows...&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-807b-b8ea-cd87e8f0bae3" class="">— Surah Al-Ma&#x27;idah (5:6)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8032-908a-f2c097b37fc0" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-8003-850f-ee29ec190d04" class=""><strong>&quot;وَسَبِّحْ بِحَمْدِ رَبِّكَ قَبْلَ طُلُوعِ ٱلشَّمْسِ وَقَبْلَ ٱلْغُرُوبِ ۝ وَمِنْ ءَانَآءِ ٱلَّيْلِ فَسَبِّحْ وَأَطْرَافَ ٱلنَّهَارِ لَعَلَّكَ تَرْضَىٰ&quot;</strong><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8054-ab97-f8214c71440b" class=""><em>&quot;So glorify the praises of your Lord before the rising of the sun and before its setting. And glorify Him during part of the night and at the ends of the day, so that you may be pleased.&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8097-9e49-e65642bab739" class="">— Surah Taha (20:130)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80a4-8b1c-d73cf7707afb" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80cb-be10-e528c0d64034" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8022-8d5c-ca1feb4f0748" class="">Growing up, I remember going to temples as a kid. My parents would ask me to look at the deity, fold my hands, and pray. But I never really understood what that meant. Do I just close my eyes? Do I ask for things? Recite a mantra? And if so, why?</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-806c-960c-e7989e8bf03c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ae-a4ef-f749aaa74ec7" class="">These rituals followed me into high school, especially since I went to a school grounded in Hindu tradition. And as most people know, Hinduism comes with a ritual for everything: for money, for strength, for health, for knowledge. On one hand, even when I didn’t understand the meaning behind it, the act of prayer sometimes made me feel good. And maybe that feeling itself is meaningful enough.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-806c-842f-cf3aff7cf8f6" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8021-acb8-c39978bfafd6" class="">Over time, I began to see that prayer was not about the ritual. It was about remembrance, a deliberate pause to reconnect with the source that set the universe in motion. When I consider that the cosmos evolved from the Big Bang to this moment through precise physical laws and unimaginably complex processes, my urge to control every future outcome starts to look irrational. Prayer reminds me of that perspective.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8059-99d5-d1f19f8ecb57" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-805f-865a-e1a6a7766c95" class="">Prayer, for me, is an act of surrender in the practical sense. It is a moment where I stop trying to force outcomes, reduce the mental noise around the future, and return to the recognition that the order of reality is larger than my own concerns.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-802c-9b95-fec98e38a2fa" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80eb-a9f5-e7ae8748f020" class="">The Qur’an says that prayer is for remembering Allah. I take that as a simple claim about attention. Prayer is the act of becoming aware of my own state, noticing my breath, observing tension or worry, and bringing my mind back to the present. It is not about having the answer. It is about recognizing that clarity comes from aligning my mind with reality rather than with my anxieties.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8069-b1d6-c91f54585ea3" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8030-a263-c508e5fcdb71" class="">Because of that, prayer is not limited to a specific posture or time of day. It appears in my morning meditation, in the quiet parts of my evening, and whenever my mind becomes scattered. I try to embed it into ordinary activities: folding clothes, listening to birds, walking outside, feeling sunlight. These are all opportunities to reset my attention and reorient myself toward what is true. Not out of obligation, but because it improves the quality of my thinking.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-809a-873c-c7c5f05ff3d9" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8063-877f-ee4529ce57d2" class="">That is my Salah.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80af-9239-e23da6661fb7" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="244bae43-8dc8-807e-8714-f9d477fd83ec" class="">Zakat (Charity)</h3></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80c3-84a3-cf308b618bea" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-805c-9f7f-ce4c58cc0c7f" class=""><em>&quot;خُذْ مِنْ أَمْوَٰلِهِمْ صَدَقَةًۭ تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا وَصَلِّ عَلَيْهِمْ ۖ إِنَّ صَلَوٰتَكَ سَكَنٌۭ لَّهُمْ ۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ&quot;</em><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bc-b8d8-f18c3c887ce1" class=""><em>&quot;Take, [O Muhammad], from their wealth a charity by which you purify them and cause them increase, and invoke [Allah’s blessings] upon them. Indeed, your invocations are reassurance for them. And Allah is Hearing and Knowing.&quot;<br/>— </em>Surah At-Tawbah (9:103)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8096-8191-ea6ce0bd828c" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-801e-845a-f8fb31bb05b0" class=""><em>&quot;يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا تُبْطِلُوا۟ صَدَقَـٰتِكُم بِٱلْمَنِّ وَٱلْأذَىٰ كَٱلَّذِى يُنفِقُ مَالَهُۥ رِئَآءَ ٱلنَّاسِ وَلَا يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ ۖ فَمَثَلُهُۥ كَمَثَلِ صَفْوَانٍ عَلَيْهِ تُرَابٌۭ فَأَصَابَهُۥ وَابِلٌۭ فَتَرَكَهُۥ صَلْدًۭا ۖ لَّا يَقْدِرُونَ عَلَىٰ شَىْءٍۢ مِّمَّا كَسَبُوا۟ ۗ وَٱللَّهُ لَا يَهْدِى ٱلْقَوْمَ ٱلْكَـٰفِرِينَ&quot;</em><br/><div style="display:contents" dir="auto"><p id="244bae43-8dc8-802b-91cd-fbd7f8ac5a92" class=""><em>&quot;O you who have believed, do not invalidate your charities with reminders or injury as does one who spends his wealth [only] to be seen by the people and does not believe in Allah and the Last Day. His example is like that of a [smooth] stone upon which is dust and is hit by a downpour that leaves it bare. They are unable to keep anything of what they have earned. And Allah does not guide the disbelieving people.&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80fd-b682-d386b74b2970" class="">— Surah Al-Baqarah (2:264)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ed-b778-ece34a509896" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-800b-a542-cdacd0af5bf8" class="">A common practice in many Hindu temples is to put money in the donation box before praying. As a kid, I followed that pattern without thinking. Before exams, during health scares, or whenever I wanted something, I would make a donation and then ask for a result. In hindsight, I had created a transactional model of God. The implicit rule was simple: I give something, and in return I expect an outcome.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8013-adc3-c16ec7824608" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80c7-a483-ed8e21b6d61c" class="">Over time, that framework stopped making sense. Any act done with the expectation of a specific return is not generosity. It is an attempt at bargaining with the universe. And it misunderstands how moral behaviour works. Charity is not a trade. It is a practice that shapes the kind of person I become.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80e9-9e80-c276571b829e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80d2-941d-e166e8fbf5dd" class="">So I try to give without attaching conditions. If someone misuses the help or responds without gratitude, that does not invalidate the act. The intention was mine, and the outcome does not alter its value. Generosity, to me, is a way of participating in the world that improves both character and community.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80c9-92c3-f72799b3c953" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-804f-8c99-eeb51cd97c4e" class="">This shows up in ordinary choices. When a student from a country that cannot afford TKS reaches out, I give them my time because supporting potential is worthwhile in itself. When someone in my dance community wants to get better, I help them regardless of payment. When a colleague is overloaded, I step in because shared progress matters. I give monthly to a Zen temple that helped me grow because valuable institutions need support to continue their work. When a friend has a meaningful goal, I try to help because enabling good ideas is simply the right thing to do.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-807e-9c6c-f385d017beeb" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80e8-a6be-f27efe816201" class="">These actions are not transactions. They are expressions of the person I am trying to become.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-808f-b771-f2babe69ec53" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="244bae43-8dc8-8048-b401-fb3ca1320b59" class="">Sawm (Fasting)</h3></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80ce-b39b-d28be2f8dfbe" class=""><strong>&quot;يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ&quot;</strong><div style="display:contents" dir="auto"><p id="244bae43-8dc8-803b-b7a2-c4f37f3a41f8" class=""><em>&quot;O you who have believed, fasting is prescribed for you as it was prescribed for those before you, that you may become mindful (of God).&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8075-b8f9-d3495ab93576" class="">— Surah Al-Baqarah (2:183)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80b3-b0c0-e4e9498d1c6c" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80cd-b7e4-c772c41c7476" class=""><strong>&quot;فَمَن كَانَ مِنكُم مَّرِيضًا أَوْ عَلَىٰ سَفَرٍ فَعِدَّةٌ مِّنْ أَيَّامٍ أُخَرَ ۚ وَعَلَى ٱلَّذِينَ يُطِيقُونَهُۥ فِدْيَةٌۭ طَعَامُ مِسْكِينٍۢ ۖ&quot;</strong><div style="display:contents" dir="auto"><p id="244bae43-8dc8-809e-9d25-c118f1a3bb1d" class=""><em>&quot;But if any of you is ill or on a journey, let them fast an equal number of days [later]. And for those who can fast only with difficulty, there is a ransom: feeding a poor person...&quot;</em></p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8022-b3ff-d422dcb5dff7" class="">— Surah Al-Baqarah (2:184)</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8074-a8b1-e667cfc92a73" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8045-b6a0-d9838497094a" class="">I can understand the utility in fasting. I see it as a tool to examine my own mind. When I reduce external inputs like food, the underlying patterns of thought and emotion become easier to observe. Hunger, fatigue, and discomfort expose the automatic reactions I often ignore. In that state, I can study how I respond to craving, how I try to assert control, and how easily my attention drifts. The value is not in avoiding food itself, but in understanding the processes that govern my behaviour.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80aa-826a-cc8838deedab" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8004-9566-d1bcc4b75f78" class="">Fasting also highlights something obvious about the world. Many people experience hunger not through choice but through circumstance. Being aware of that changes how I think about compassion and responsibility. It can shift attention away from myself and toward the broader system I am part of.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-803f-aa8b-eddcd794df99" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80ac-8102-e6ba5e881c9d" class="">All of this being said, it’s not a practice I align with given my own health goals. However, it’s one I can respect.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80ef-bcdf-d28b5e7fe3b5" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="244bae43-8dc8-80c9-a7ad-d47e829cc925" class="">Hajj (Pilgrimage)</h3></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80e9-a896-cecc8d3587c6" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="244bae43-8dc8-80c5-9f11-c8648ab7cce7" class="">وَإِذْ جَعَلْنَا ٱلْبَيْتَ مَثَابَةًۭ لِّلنَّاسِ وَأَمْنًۭا ۖ وَٱتَّخِذُوا۟ مِن مَّقَامِ إِبْرَٰهِيمَ مُصَلًّۭى ۖ وَعَهِدْنَآ إِلَىٰٓ إِبْرَٰهِيمَ وَإِسْمَـٰعِيلَ أَن طَهِّرَا بَيْتِىَ لِلطَّآئِفِينَ وَٱلْعَـٰكِفِينَ وَٱلرُّكَّعِ ٱلسُّجُودِ<br/><br/>&quot;And [mention] when We made the House a place of return for the people and [a place of] security. And take, [O believers], from the standing place of Abraham a place of prayer. And We charged Abraham and Ishmael, [saying], &#x27;Purify My House for those who perform Tawaf and those who are staying [there] for worship and those who bow and prostrate [in prayer].&#x27;&quot;<br/><br/>— Surah Al-Baqarah (2:125)</blockquote></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-802f-8669-e5a7166e7522" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-8087-b175-cfc6947be7ca" class="">I find the concept of Hajj quite beautiful and I hope to go one day. When I look at the essence of Hajj, I see a pause from ordinary life, a period of purification, and a deliberate act of remembrance. Those ideas are valuable, and I try to bring them into my life every year. It’s a chance to step out of your routine, strip yourself of ego, status, and distraction, and come back to truth. That reset, I think, is necessary for everyone. But I don’t believe it only needs to happen once in a lifetime or only in Mecca.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80f7-94f8-e62fa8f413e9" class="">
+</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80f8-8f18-ede032acc7d1" class="">I found that I fulfill a similar intention through an annual Vipassana retreat each December. Ten days of silence, meditation, and service create the same kind of reset: no phone, no external identity, just the work of paying attention to my own mind. In that environment, the noise falls away and what remains is clarity. It is where I return to stillness and reconnect with the deeper order beneath my life. And by serving on those retreats, I also help others access that same stillness in themselves.</p></div><div style="display:contents" dir="auto"><p id="244bae43-8dc8-80bc-8e76-fc6c4da2da3c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="243bae43-8dc8-8060-8c23-d1ba364ab073" class="">Shahada (Declaration of Faith)</h3></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-800a-84d0-db28d18cda75" class="">This naturally leads to the question people ask most: “Did you convert?” or “Did you take the Shahada?”</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8007-9e05-d2619291e8a9" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8078-a6e4-fb9da64bf2fb" class="">Traditionally, conversion is defined as saying a single sentence out loud:<br/>“There is no god but Allah, and Muhammad is the messenger of Allah,”<br/>usually in front of an imam so it can be marked as official.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80cd-841d-f254d9e21b3f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8029-abbf-f283b74be3a0" class="">What stood out to me is that this procedure does not appear in the Qur’an. The Qur’an does not prescribe a formal declaration or a ceremony. It focuses on belief and the way that belief shows up in a person’s life. A sentence spoken once has little weight if the underlying convictions are absent.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8088-85bb-cf33340a4adc" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8024-b9f0-e7b5c9cc9800" class="">At one point I spent an hour and a half speaking with an imam because I assumed I needed some sort of verification. He asked thoughtful questions and made sure I understood what I was exploring. I appreciated that. But I eventually realized that outsourcing my relationship with God to another person did not make sense. The connection I am building is internal, not something that requires certification.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-80b5-a52b-e4e48010ef9b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8019-98b3-e5191315c981" class="">So I chose not to say the Shahada in a formal setting. Not out of hesitation, but because the declaration is already reflected in how I live. Belief, to me, is not measured by recitation. It is measured by embodiment.</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8018-9851-d8c6dab28088" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2bcbae43-8dc8-8091-82d2-cafb1edeab7f" class="">I believe in the oneness of God. I believe Muhammad played a central role in bringing guidance to humanity. And I try to align my behaviour with those principles. That is the part that matters.</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
