@@ -1,0 +1,949 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Playbook: App Building 101+102 (Advanced Vibe Coding guide)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2dd0b470-b010-8017-a79b-cd3523bbd120" class="page sans"><header><img class="page-cover-image" src="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/LI_Banner_Create_The_Future_Rocket_(1).jpg" style="object-position:center 40.580000000000005%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🚀</span></div><h1 class="page-title" dir="auto">Playbook: App Building 101+102 (Advanced Vibe Coding guide)</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="2de0b470-b010-8030-937e-e21ea855b492" class="">Made with ❤️ by Pranav Menon</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8031-b688-faa1236287a6" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="2dd0b470-b010-800e-b5c2-da6c28e781d3"><div class="source"><a href="https://youtu.be/HFUqKW7r89E">https://youtu.be/HFUqKW7r89E</a></div></figure></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8027-a3f0-dce97dd06802" class="">If there’s trouble loading the video, <a href="https://youtu.be/HFUqKW7r89E">here’s the direct link</a></p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d8-84f3-d8497857d27c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80ea-a5a4-c4ca1f5724e9" class="">This guide teaches you <strong>how to build real software projects using AI</strong>, even if you’re new to coding environments.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80a2-b1e1-f28bcac9f809" class="">You are not expected to understand everything upfront. But you are expected to follow a repeatable process.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-803b-a903-dbc112aa6c6a" class="">By the end of this guide, you’ll know how to:</p></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-809c-91ac-f170b586b832" class="bulleted-list"><li style="list-style-type:disc">Ship a real, working web app</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-80ca-a716-d4f319368f8d" class="bulleted-list"><li style="list-style-type:disc">Collaborate with AI as a serious building partner</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-8017-b175-fa87ac9bbf2a" class="bulleted-list"><li style="list-style-type:disc">Reuse the same workflow for future projects</li></ul></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d2-a446-cf60997c18b8" class="">We’ll use a <strong>journaling app</strong> as our running example. The actual app matters less, the building principles and the process matters most.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-800f-b2e5-e9c1710ab641" class="">This guide will have a fundamentals section (101) then an advanced section (102) for those that are looking to take their AI agent skills to another level</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-802a-9d1e-d326f0f19db8" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="2dd0b470-b010-80b8-9283-ea773b303b27"><div style="font-size:1.5em"><span class="icon">❗</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2dd0b470-b010-807e-a003-d3df3279b793" class=""><strong>Don’t just read the guide. </strong>Actually implement the guide step by step. Reading along will not help you learn. Put 1 hour on the clock, and finish this end to end. Read every line intentionally.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-802e-ba8e-d8c7745dda3d" class="">
+</p></div><div style="display:contents" dir="ltr"><nav id="2df0b470-b010-8064-bed8-d99371e05b87" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2dd0b470-b010-8053-8b19-e282439cf672">Phase 1: Get really good at providing instructions (Prompt Engineering)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd0b470-b010-808e-a31d-d456a3f7f692">The Formula: Intent + Context + Process + Outcome = Effective Prompt</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd0b470-b010-80c8-97ac-ff0bf5c2f735">Follow along: The Initial Prompt (Put this into GPT or Claude)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd0b470-b010-8082-9ca5-c321efab146e">Breaking down the prompt engineering process:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd0b470-b010-80d7-9d50-ec7bfb335a4c">Final point: Build the cursor kickoff prompt</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2dd0b470-b010-804f-847f-c56c915977b1">Phase 2: Building in Cursor</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2dd0b470-b010-80df-aca8-c9dcc4f4f382">Phase 3: Understanding the different components of your app</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2de0b470-b010-80f8-848b-d488044289c2">Phase 4: Make your app pretty</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2de0b470-b010-80e8-a983-f3e05a24b519">Use existing UI frameworks.</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2de0b470-b010-8046-a309-e5a7c87f7130">Use Lovable</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2de0b470-b010-80ba-8a03-fa50547f9907">Phase 5: Level up in AI by levelling up your Information Diet</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2de0b470-b010-80ce-a16c-c0fc7f7b0c13">App Building 102 (Advanced Vibe Coding Principles)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd0b470-b010-801b-a7f1-e0d56ac583a6">Understanding the Terminal (CLI)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2de0b470-b010-80ee-b241-f21b709a9eb0">Using Codex or Claude Code</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2de0b470-b010-8036-a228-d94d66252001">Use Codex/Claude instead of ChatGPT for planning projects</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2df0b470-b010-8013-84ea-c8c9d73f1dfc">Building your <a href="http://PRD.md">PRD.md</a> or spec sheet using Claude Code<br/></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2de0b470-b010-80db-9630-ea7c223b7ca9">Follow Boris’ (Founder of Claude Code) on CC best practices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2de0b470-b010-8071-970b-e3a0eec6744f">Github Best Practices</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2df0b470-b010-80ff-b884-e718472b9ef9">Best Practice #1: Create a Git Repo</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2df0b470-b010-8041-91f7-f0b6c2470fb0">Best Practice #2: Commit after every chunk</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2df0b470-b010-80a2-ac93-c7d362dde705">Best Practice #3: Push when ready</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2df0b470-b010-801d-b4d4-d9b5842080e7">Context Management: Get more out of limited Context</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2df0b470-b010-80b0-ab27-cf65847353fa">Structuring your frontend and backend</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2dd0b470-b010-8041-941f-c2ab9d1bf1c9">❗SUPER important note on security</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2df0b470-b010-8044-846c-f2f1273d4e4d">fin.</a></div></nav></div><div style="display:contents" dir="auto"><h2 id="2dd0b470-b010-8053-8b19-e282439cf672" class="">Phase 1: Get really good at providing instructions (Prompt Engineering)</h2></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8066-9857-ff5b367bdb64" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2dd0b470-b010-804f-aa77-f237b0101752"><div style="font-size:1.5em"><span class="icon">🔧</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8081-aad3-f2b2c1200b22" class=""><strong>What we’re building:<br/></strong>A basic journalling app that connects to GPT and offers the user insights plus prompting questions to deepen the reflection practice.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8076-aaa6-d684962645b3" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8073-913a-c883bd17ad08" class="">Before building this app, we have to get a really clear idea on what it is that we want to build. </p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-804e-a715-e93680c9033e" class="">AI is ridiculously good at execution. However, in order for it to be really good at executing, <strong>you need to be really good at giving it good instructions</strong>.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-809e-9d70-e3226d1786ba" class="">Higher quality input = Higher quality output. All good prompts have the following format.</p></div><div style="display:contents" dir="auto"><h3 id="2dd0b470-b010-808e-a31d-d456a3f7f692" class="">The Formula: Intent + Context + Process + Outcome = Effective Prompt</h3></div><div style="display:contents" dir="auto"><ol type="1" id="2dd0b470-b010-8075-b338-f1707b771a77" class="numbered-list" start="1"><li><strong>Intent</strong>: Why do you want to build what you want to build? For a personal project for learning purposes? Or a product that you can ship for people to use? Get super clear here.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2dd0b470-b010-8024-b169-ffa1ceeb03c8" class="numbered-list" start="2"><li><strong>Context</strong>: What do you want to build? How do you want the user experience to be when people are clicking through your product? </li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2dd0b470-b010-807b-b1c3-d48d4610d453" class="numbered-list" start="3"><li><strong>Process: </strong>How do you want GPT to interact with you to get to your outcome?</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2dd0b470-b010-8072-8a57-e0d3bd71ba36" class="numbered-list" start="4"><li><strong>Outcome</strong>: What do you want the output from GPT to look like?</li></ol></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80fa-b032-c58fa8926dc9" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2dd0b470-b010-80c8-97ac-ff0bf5c2f735" class="">Follow along: The Initial Prompt (Put this into GPT or Claude)</h3></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-806c-ae1b-c782551e730e" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2dd0b470-b010-8052-8b14-e220a45864ac" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">I want to build a journalling app. This is primarily for me to tinker with projects and learn how to use AI. This is not meant to be public facing project.
+
+It needs to be a clean, minimal interface so I can just focus on freeform journalling. When I&#x27;m done, there should be a button that says &quot;Done&quot;. After that I want to use GPT to process my journal entry, provide some reflections, and provide 2 questions that will dig deeper based on my reflection.
+
+The end goal here is to develop a PRD / build plan that I can feed into Cursor. I don&#x27;t need code to be involved, just architectural details. Let&#x27;s start by you asking me questions one by one to help me think through the different architectural elements of this project. Let&#x27;s do it bucket by bucket. For each bucket, provide me with options and include your recommendation on how we should proceed.
+
+Once we have an understanding of the architecture, break apart this project into chunks. Each chunk needs to be testable and executable. Only move onto the next chunk once one chunk is complete. After doing the buckets, ask me questions one after one to make sure you have clarity on what I want to build. When you have clarity, you can begin building the PRD.
+
+Some additional notes: keep this simple. I&#x27;d like to deploy this cleanly on Vercel. Oh and I&#x27;d like to use gpt-4-turbo.</code></pre></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8034-a0a2-e88eebd8a40c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2dd0b470-b010-8082-9ca5-c321efab146e" class="">Breaking down the prompt engineering process:</h3></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8011-930f-c5bd1460794b" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="2dd0b470-b010-809b-976b-cc5e921f5d1f" class=""><em>I want to build a journalling app. This is primarily for me to tinker with projects and learn how to use AI. This is not meant to be public facing project.</em></blockquote></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80fa-bbd6-e020d43b5042" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-806d-a9ce-f8fedafc9a68" class="">This is the <strong>intention </strong>part of the prompt, where I explicitly talk about what the app looks like. The more detail I have about it, the better. </p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80cd-9add-d81c77f070d5" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2dd0b470-b010-8098-bc62-da8317f3a441"/></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-803d-9a06-eea9b16a041b" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="2dd0b470-b010-8045-9d2e-e97d9c610794" class=""><em>I want to build a journalling app. It needs to be a clean, minimal interface so I can just focus on freeform journalling. When I&#x27;m done, there should be a button that says &quot;Done&quot;. After that I want to use GPT to process my journal entry, provide some reflections, and provide 2 questions that will dig deeper based on my reflection.</em></blockquote></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80fd-be95-fd3bc677bacc" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80ee-8139-e07527d7bd79" class="">This is the <strong>context </strong>part of the prompt. I give it as much information as possible on what I want the project to look like.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8095-996d-f6c7a5017eba" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="2dd0b470-b010-809e-8079-fe6653c774ea" class=""><em>The end goal here is to develop a PRD / build plan that I can feed into Cursor. I don&#x27;t need code to be involved, just architectural details. Let&#x27;s start by you asking me questions one by one to help me think through the different architectural elements of this project. Let&#x27;s do it bucket by bucket. For each bucket, provide me with options and include your recommendation on how we should proceed.</em></blockquote></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80f1-9723-d1e318b8070a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8068-b930-e4781e08739c" class="">This is the <strong>output + process </strong>part of the prompt. I’m telling it I want the output to be a “PRD / build plan” A PRD is a product requirements document, that is often given to engineers that includes specific instructions on what to build.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d5-a077-f13aa65b178e" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2dd0b470-b010-809e-979f-d22c1a95ba03"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2dd0b470-b010-803d-88db-f33f07f17690" class=""><strong>Prompting principle: Treat AI as a brainstorming buddy</strong><br/><br/>Notice here, I asked it to ask me questions me questions one by one. In this context, this is key so you can give the AI more information so it builds more accurately. You can also apply this to things beyond coding projects</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8054-9003-c42c900caed4" class=""><br/>Trying to make a decision about anything? Ask it to ask you questions one by one<br/><br/>Unsure about how you want the project to look like? Ask it to ask you questions one by one</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8046-9f6c-f50fb551eb5c" class="">
+</p></div><div style="display:contents" dir="auto"><blockquote id="2dd0b470-b010-8066-b5f3-fd53536cb209" class=""><em>Once we have an understanding of the architecture, break apart this project into chunks. Each chunk needs to be testable and executable. Only move onto the next chunk once one chunk is complete. When you have clarity after asking my questions, you can begin building the PRD.</em></blockquote></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8045-8d4f-f592c94b078f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-807f-a7bd-ea25ab4bac46" class="">This is the <strong>process </strong>part of the prompt. </p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80b0-aecd-c8d6b2aab244" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80ff-8713-d53027995b4e" class="">This is a really important part of the software building process. Most vibe coded apps break because people try to build it all at once. <strong>It’s really important to break down your big app into small, individual, testable chunks.</strong></p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80c7-9ea0-f8638ae7eb1a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8059-ab76-e1a2682d4511" class="">Once you’ve built a chunk, you can test it works, then move onto the next.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d8-81a4-f4fd477b3740" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8027-8844-f29f5cd8061f" class="">This way you’re not building a house of cards, but actually building a solid house with a solid foundation of bricks.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8082-9eda-daf54f663458" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2dd0b470-b010-80d7-9d50-ec7bfb335a4c" class="">Final point: Build the cursor kickoff prompt</h3></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8095-86f3-c717244449b2" class="">After you’ve used ChatGPT or Claude to go through the entire process above (and have answered the questions), it should output a file. Name it <a href="http://prd.md">prd.md</a> and save it in a new project folder. This is going to be your dedicated project folder for this app.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d3-99da-fa38dccda05b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80b3-90a2-ccfa29facea6" class="">You’re now going to open up a Cursor. (Google how to download this) After this, load up your project folder onto cursor. You should now see the folder, plus the <a href="http://prd.md">prd.md</a> file.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80ae-bb46-dc73fad43b52" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80c2-b9f3-e857d0e7dfb9" class="">Now what? </p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8029-9628-ee44444f0e0e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80da-8610-d8350e7567ec" class="">We need to kickstart the building process. The way to think about this part is, the <a href="http://prd.md">prd.md</a> includes the guide on how to build. We now have to build a prompt for cursor to reference this file (prd.md) and kickstart the building process.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80b2-8001-c738423f1f6c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-802d-ab81-fb37c5330cb2" class="">You can technically just roll it all into the <a href="http://prd.md">prd.md</a> doc and then ask cursor to “execute”. However, I like to split it up to provide additional instruction to the agent on how to understand the file and execute it. I generated this by going back to claude/GPT (where I did the initial brainstorming and simply asking it to help me provide a “cursor kickoff promptp”) Here is that prompt that it generated:</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80a2-81e5-fc351411aff4" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2dd0b470-b010-80a3-aa83-e7e4c4d0fe3a" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all"># Cursor Kickoff Prompt
+
+You are an experienced full-stack developer.
+
+Implement the system described in `prd.md` exactly as written. This is a personal, minimal project. Keep everything simple, explicit, and teachable.
+
+## Core rules (do not violate)
+
+1. **Follow `prd.md` exactly**
+   * Do not add features
+   * Do not redesign UX
+   * Do not extend scope
+
+2. **Minimalism over cleverness**
+   * Fewer files
+   * Clear naming
+   * No abstractions unless required
+
+3. **Single deployable app (CRITICAL)**
+   * Build as one Next.js app suitable for Vercel
+   * Do not split into separate &quot;frontend&quot; and &quot;backend&quot; repos/services
+   * All server logic must live inside the Next.js app using:
+      * Route Handlers (e.g. `/app/api/.../route.ts`) or API routes
+   * No separate Express server, no separate backend hosting
+
+## System constraints
+
+### Platform
+* Web app only
+* Architecture must be iOS-ready
+* No mobile-specific code
+
+### Storage
+* Supabase Postgres
+* Supabase Auth enabled
+* RLS enforced
+* Single user (but real auth patterns)
+
+### Data model
+* Journal entries are append-only timelines
+* Entries consist of ordered blocks
+* Block types: `human` or `ai`
+* Blocks are immutable once created
+
+## AI invocation rules (CRITICAL)
+
+* GPT is called only when the user presses &quot;Done&quot;
+* The OpenAI call must happen server-side inside Next.js (Vercel-hosted route handler)
+* Backend must use `gpt-4-turbo` as the model name (make this a constant or env-configurable)
+* GPT input = all human blocks so far
+* AI blocks are never included in GPT input
+
+### GPT output contract
+
+GPT must return strict JSON only:
+
+```json
+{
+  &quot;reflections&quot;: [&quot;...&quot;],
+  &quot;questions&quot;: [&quot;...&quot;, &quot;...&quot;]
+}
+```
+
+Rules:
+* `questions` must contain exactly 2 strings
+* No markdown
+* No extra prose
+* No partial responses
+
+## Basic error handling (keep this minimal)
+
+### Supabase failures
+* If saving the human block fails:
+   * Show a minimal error message
+   * Do not call GPT
+   * Never lose the draft text in the UI
+
+### GPT failures
+* If GPT request fails:
+   * Do not create an AI block
+   * Preserve the human block that was already saved
+   * UI shows: &quot;Reflection failed. Try again.&quot;
+
+### Invalid GPT output
+* If JSON is invalid or not the required shape:
+   * Treat as failure
+   * Do not attempt auto-fixing
+   * Allow retry by pressing Done again
+
+### UI behavior
+* &quot;Done&quot; disabled while GPT is running
+* Re-enable on failure
+* Error messages are small, non-blocking, and clear
+
+No queues, no background jobs, no complex retries.
+
+## Deployment expectations (Vercel)
+
+* Use environment variables only:
+   * `OPENAI_API_KEY`
+   * Supabase URL + anon key (and anything else required)
+* Ensure the app runs locally and deploys to Vercel without extra services
+
+## Execution expectations
+
+* Build in small, testable steps
+* Each step must work end-to-end before moving on
+* Prefer clarity over polish
+* If unsure, choose the simplest correct implementation
+
+## What success looks like
+
+* User can journal freely
+* Pressing Done locks the text as a human block
+* Server route calls GPT and returns reflections + 2 questions
+* AI block is appended and renders cleanly
+* User can click a question and continue writing as a new human block
+* Timeline persists after reload
+* Errors never destroy or corrupt user content
+
+---
+
+**Start by reading `prd.md` in full. Then implement Chunk 1 only.**</code></pre></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8088-bfe2-db029dcf5100" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8010-bf4b-c48b6a8526ce" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-806c-ab04-fc85181e2e9d" class=""><strong>Important pointers here:</strong></p></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-80fa-a25f-d138f4334665" class="bulleted-list"><li style="list-style-type:disc">Notice the “Then implement chunk 1 only”. This is important. Otherwise, your AI will build all chunks at once without the right testing of each one. This will force it to go only chunk by chunk</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-80b4-9b08-fed63ff52bc8" class="bulleted-list"><li style="list-style-type:disc">Follow the prompting principle below</li></ul></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80be-beec-f39d0810c38e" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="2de0b470-b010-80e4-a661-c60f191143f6"><div style="font-size:1.5em"><span class="icon">❗</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2de0b470-b010-8060-aa54-c76a66dfebb2" class=""><strong>Note: </strong>If you’re on the free version of Cursor, it’s worth removing the “Implement chunk 1 only” instruction and have it all build it at once. This app in particular is a simple one so its less likely to get it wrong, and saves you more tokens.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-809a-a986-d1057688c07d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-808f-ae60-dab27f4a9790" class="">If you can, I recommend paying $20/month for this service. Allows you to build so much more</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-802a-9de6-e2e2f814a882" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80f5-bcf2-ed5a3ec1d40a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-802e-873f-e3a2cda9307e" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2dd0b470-b010-80b2-9e75-d34b25c65103"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8027-b839-ced3f6271f1c" class=""><strong>Prompting Principle: Give AI a role</strong></p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8046-8a17-ee31c1aecd94" class=""><br/>”You are a full stack developer”<br/><br/>Giving roles to AI is a powerful wait to create more effective outcomes. By doing so, you are creating guard rails within wihich AI can create. The clearer your guardrailes, the stronger the AI’s ability for what you want.<br/><br/>Considering using this in your projects / practices. <br/><br/>Wanting therapy? Say “You are a certified licensed therapist” and then add more to the prompt.<br/><br/>Want help in a particular domain? Ask it to be an expert in that domain and respond accordingly.<br/></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80d0-9b6e-e6c8f2e2bd3a" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2de0b470-b010-80c8-a573-eabed72287c5"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2de0b470-b010-80c8-a8a8-dbe767b8abff" class=""><strong>Prompt Principle (Advanced): Commit to Git at every chunk<br/><br/></strong>We’ll dive into this a bit more in the advanced section. For now, after every chunk that’s executed within cursor, type in agent box “please commit this to github” and it will proceed to give you instructions on how to do so. Again, a deeper explanation will be available in the 102 version of the guide below</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80da-aebc-c8730b8aea74" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-804f-bfe6-fc47de4f13b9" class="">If you have gotten to this point, <strong>this is 80% of it.</strong></p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80d0-953a-c235c2ce7d3f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8024-8541-f55af58acdbb" class="">Getting the instructions right is THE most important part of the process. Everything from here is just tactical details. </p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80c0-8909-d7a7ff5e42e2" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2dd0b470-b010-804f-847f-c56c915977b1" class="">Phase 2: Building in Cursor</h2></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-808d-a313-cd80e324c9d0" class="">After you move the <a href="http://PRD.md">PRD.md</a> file into the folder, launch it within cursor, and then copy paste the “agent kickoff prompt” in the agent box, the agents in cursor will start to now build your app.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8073-8c66-c749c9275467" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8040-b37f-d74a58b3d75e" class="">Lots of options on how to actually build. Codex, Claude Code Cursor that we’ll go into in the advanced version. </p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80f6-a31a-ed6ae13299c4" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-805a-8ec1-c84eff55fa8a" class="">However for this simpler version, here are some principles to remember in this phase:</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8095-b99a-eaea86236fd4" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80d5-9236-c51f35451048" class="numbered-list" start="1"><li>Once Cursor has finished the build, there will be “Next steps” that you’ll have to do. I highly recommend putting in the following prompt. </li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80a0-a684-f67f95d61762" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2de0b470-b010-80d3-90cf-ff109abc9275" class="code code-wrap"><code class="language-Markdown" style="white-space:pre-wrap;word-break:break-all">Assume I&#x27;m a begineer and have no context around the next steps you&#x27;ve provided. 
+
+Please explain it to me simply as if i&#x27;m a beginner. </code></pre></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80f6-b38e-e4b3b616c437" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2de0b470-b010-80e7-a93d-ca8f29ee390b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2de0b470-b010-803f-b6b4-f55fd168e503" class=""><strong>Prompting Principles: Ask AI how to use AI</strong></p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8094-9036-d9f9af370cc2" class=""><strong><br/></strong>When in doubt, if you don’t know where to go, or if AI instructions seem confusing, simply ask the AI on what the instructions mean, and it will help guide you. Use terms like “explain it to me simply”, “explain like i’m 5” to make instructions simpler. <strong><br/></strong></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8023-acbb-f9ebfb96b96d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-802e-ace9-f29021dd97d8" class="">Once you’ve followed through all the steps — you should have a fully functioning app!</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-807f-b0bd-ec919490effb" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8093-9596-f13fe538382b" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="2de0b470-b010-8045-8c0d-db7f0dfb9f92"><div style="font-size:1.5em"><span class="icon">❗</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2de0b470-b010-805e-a813-d2929ca633c9" class=""><strong>Experiment between Agent Mode and Chat Mode on Cursor<br/><br/></strong>When on chat mode, it won’t take any agent action, it will just act as a chat interface. I use this when I want to plan stuff, or just ask questions about my code. I use the Agent function when i’m ready for it to execute code.<strong><br/></strong></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-806b-9790-e977cc714bf2" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-804d-986d-e4da145ff711" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8067-8888-cd4446d4ba73" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2dd0b470-b010-80df-aca8-c9dcc4f4f382" class="">Phase 3: Understanding the different components of your app</h2></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8076-8f8e-d9a9c86bbd24" class="">This is good mental model to understand how everything fits together.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8020-a60d-d2fefd64afbb" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-807a-bd83-cfef5cfe1222" class="">For basic apps, you need the following fundamental things.</p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8086-bd76-f35b02eff572" class="numbered-list" start="1"><li><strong>A server to host the app</strong> — so it’s always running. This can be locally on your laptop or on a hosting service</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-803e-a507-dc6e70cda3aa" class="numbered-list" start="2"><li><strong>A database service — </strong>to store all your data</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8067-b619-d42dbf79087d" class="numbered-list" start="3"><li><strong>Github </strong>— to store your code. Think of this as the google drive of your code</li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8053-bada-ebc1ecd5a9f4" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8049-b9da-d6804b1408e0" class="">My go to setup for any app I’m looking to build:</p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80e2-8745-e7078dd295dd" class="numbered-list" start="1"><li><strong>Hosting my app </strong>— Vercel. It’s super quick and easy to setup. It’s also free</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80f3-8e56-ed29d8af1872" class="numbered-list" start="2"><li><strong>A database service </strong>— Supabase. Also quick, free and easy to setup. It’s is a PostgreSQL system</li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8095-b4b3-c3c75214cd32" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2de0b470-b010-8017-a412-ca20c7ec1281"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2de0b470-b010-80cc-ac06-ef18a1dc2a7b" class=""><strong>Prompting Principle: Declare your stack right off the bat<br/><br/></strong>I often just tell AI at the very beginning, when i’m designing my app, that I want to use this tech stack. Makes everything much simpler</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80df-a388-d678abeefbff" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2de0b470-b010-80f8-848b-d488044289c2" class="">Phase 4: Make your app pretty</h2></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80bb-b34e-d409a814cee7" class="">Here are my two go to ways for this</p></div><div style="display:contents" dir="auto"><h3 id="2de0b470-b010-80e8-a983-f3e05a24b519" class="">Use existing UI frameworks.</h3></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80c7-a005-c912d55fcb98" class="">Google the following UI Frameworks and find what kind of vibe you like the most:</p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8098-b790-c5d6c5c5aa9c" class="numbered-list" start="1"><li>ShadCN</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8032-8a62-ce29dc62e3cf" class="numbered-list" start="2"><li>HeadlessUI</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80f7-bbd0-e6eb6c821463" class="numbered-list" start="3"><li>Daisy UI</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-805a-9a12-fb0be73388d9" class="numbered-list" start="4"><li>Primefaces</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-808b-927e-e72fce266a5d" class="numbered-list" start="5"><li>Preline</li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8016-a43a-c184fcb02168" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80d1-b539-cb1f8c12c26c" class="">Once you find the like, simply tell the AI when you’re prompting what UI framework you’d like, and maybe toss in the link to the UI website, so it explicitly knows what you’re talking about. And AI will handle the rest</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-808d-bd36-c3e5d0b1361c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2de0b470-b010-8046-a309-e5a7c87f7130" class="">Use Lovable</h3></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80fc-8be8-c3be86209081" class="">Out of Replit, V0, Cursor and Lovable, I’ve found Lovable to have the best inherent aesthetic. So my usual workflow is I first design the app I want on lovable. When I do it on lovable, <strong>I</strong> <strong>make sure to tell it to NOT build a functional app, just a clickable design prototype. </strong>Then I tweak it accordingly. </p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80ab-a9b0-e353ae92275a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8026-8572-cd877dffebbb" class="">Once I do that, I simply screenshot the designs and upload it to cursor so it knows how to adjust the design of the app</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80ba-8637-fe3e16c4ca50" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8015-8103-eed915e28c47" class=""><strong>That’s it! This brings is to the end of the 101 section. If you’d like to dig deeper, proceed to 102.</strong></p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8086-8119-ddad6097ef60" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8095-83ff-cbf62be97be0" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2de0b470-b010-80ba-8a03-fa50547f9907" class="">Phase 5: Level up in AI by levelling up your Information Diet</h2></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80e8-9d66-f30b880c7744" class="">Here’s how I stay on top of all things AI</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8041-82e8-c68f55c95e31" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8072-8a49-e81fca747230" class="numbered-list" start="1"><li>Be chronically on X. Follow these folks and your feed will be super AI forward quite instantly:<div style="display:contents" dir="auto"><ol type="a" id="2de0b470-b010-805a-95bf-c28be169cb69" class="numbered-list" start="1"><li><strong>Andrej Karpathy</strong> (@karpathy) - Former Tesla AI director</li></ol></div><div style="display:contents" dir="auto"><ol type="a" id="2de0b470-b010-80b5-b771-c666c782859e" class="numbered-list" start="2"><li><strong>Sam Altman</strong> (@sama) - CEO of OpenAI</li></ol></div><div style="display:contents" dir="auto"><ol type="a" id="2de0b470-b010-8004-8133-f282c5e3240e" class="numbered-list" start="3"><li><strong>Greg Brockman</strong> (@gdb) - Co-founder of OpenAI</li></ol></div><div style="display:contents" dir="auto"><ol type="a" id="2de0b470-b010-8045-9047-e866b1058b90" class="numbered-list" start="4"><li><strong>Boris Cherny</strong> (@bcherny) - Created Claude Code</li></ol></div><div style="display:contents" dir="auto"><ol type="a" id="2de0b470-b010-8005-ace9-c00ab6655c1a" class="numbered-list" start="5"><li><strong>Thariq </strong>(@trq212) - Works at Anthropic</li></ol></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8085-b1a7-d7e19f206277" class="numbered-list" start="2"><li>Sign up to <a href="http://AlphaSignal.ai">AlphaSignal.ai</a>. It’s a daily AI newsletter. They include top AI research papers</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80de-85cc-ecb79a84a681" class="numbered-list" start="3"><li>Keep building stuff. You get much better at coding stuff the more you use it</li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80ad-abdb-c3b56f68f82b" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2de0b470-b010-80da-b993-eb121e45fba5"/></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80c3-a7ea-e5f5e2301e34" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2de0b470-b010-80ce-a16c-c0fc7f7b0c13" class="">App Building 102 (Advanced Vibe Coding Principles)</h1></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80a7-82bd-c3f3058e085f" class="">Before we explore some of the more advanced techniques for vibe coding, here are some fundamental things you need to know. </p></div><div style="display:contents" dir="auto"><h2 id="2dd0b470-b010-801b-a7f1-e0d56ac583a6" class="">Understanding the Terminal (CLI)</h2></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8091-a54f-d258eb27d59a" class=""><strong>What is the Terminal?</strong><br/>The terminal (also called Command Line Interface or CLI) is a text-based way to talk to your computer. Instead of clicking buttons, you type commands.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80a5-8191-d0fedf8c5793" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80a1-98bd-ca1fc593ce15" class=""><strong>Why it matters:</strong></p></div><div style="display:contents" dir="auto"><ul id="2de0b470-b010-804a-98c8-d1dba68b0f42" class="bulleted-list"><li style="list-style-type:disc">This is how you execute files like python files</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-8027-830d-f26d83cc728a" class="bulleted-list"><li style="list-style-type:disc">AI coding assistants can execute commands directly</li></ul></div><div style="display:contents" dir="auto"><ul id="2de0b470-b010-80fd-9a63-ec370602857a" class="bulleted-list"><li style="list-style-type:disc">Many development tools work better through the terminal</li></ul></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80f0-b0d3-cb1a7d940a2e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8008-80eb-e1981e431a53" class=""><strong>Try this out: (if Mac)</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-80b5-a61d-d8f35e30f05a" class="numbered-list" start="1"><li>Search for terminal</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-804c-ac15-dcd1161d5ea8" class="numbered-list" start="2"><li>Goal: Try to find the folder where you built your earlier project using the following commands. Experiment by entering them one at a time and hit enter:<div style="display:contents" dir="auto"><ul id="2dd0b470-b010-80d4-867d-d13feed83966" class="bulleted-list"><li style="list-style-type:disc"><code>pwd</code> - Shows where you are</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-80af-aba3-f1f8de62737d" class="bulleted-list"><li style="list-style-type:disc"><code>ls</code> - Shows files in current folder</li></ul></div><div style="display:contents" dir="auto"><ul id="2dd0b470-b010-8068-9ca6-ff44c1cc876e" class="bulleted-list"><li style="list-style-type:disc"><code>cd folder-name</code> - Move into a folder (use <code>cd ..</code> to go back)</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80d9-ba63-c08aa70976b8" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80c5-bf3e-cce31bd64e43" class=""><strong>Try this out: (if Windows)</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8063-860e-e34e64807171" class="numbered-list" start="1"><li>Search for <strong>Command Prompt</strong> (or <strong>PowerShell</strong>)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2de0b470-b010-8049-88ec-dd420989b49d" class="numbered-list" start="2"><li>Type the following commands one at a time and hit enter<div style="display:contents" dir="auto"><ul id="2de0b470-b010-80e3-a3fd-e1a45ba2b37f" class="bulleted-list"><li style="list-style-type:disc"><code>cd</code> – Shows where you are (current directory)</li></ul></div><div style="display:contents" dir="auto"><ul id="2de0b470-b010-80d1-b8bb-ef160b07582c" class="bulleted-list"><li style="list-style-type:disc"><code>dir</code> – Shows files and folders in the current directory</li></ul></div><div style="display:contents" dir="auto"><ul id="2de0b470-b010-8000-a60c-c5a9754dafe6" class="bulleted-list"><li style="list-style-type:disc"><code>cd folder-name</code> – Move into a folder (use <code>cd ..</code> to go back)</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80f1-bd22-e748e76e1776" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2de0b470-b010-80ee-b241-f21b709a9eb0" class="">Using Codex or Claude Code</h2></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-807b-96d1-e8ecb2000495" class="">Right now, every single advanced developer is using Claude Code to build projects. </p></div><div style="display:contents" dir="ltr"><figure id="2de0b470-b010-800b-b233-ca3a3e154d48" class="image"><a href="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/G9xfLctbgAE1mEU.jpeg"><img style="width:709.9921875px" src="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/G9xfLctbgAE1mEU.jpeg"/></a></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8022-91b8-f7a4f2216b96" class="">This is Jaana, one of the best engineers in the world. She is also a Principal Engineer at Google (a literal competitor to Claude) saying how amazing Claude is. </p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80cb-a567-ca8a62f5024c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8074-92ca-d1070e2f64a4" class="">It’s super worthwhile learning how to use it.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80e3-b022-ea7d700d8fe8" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-8008-9c94-c71769c63310" class="">Now I’m not going to go into how to download this. You can figure this out pretty easily. But I’m going to write out some best practices on how to use it.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80c5-b566-e23321bfa96a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2de0b470-b010-8036-a228-d94d66252001" class="">Use Codex/Claude instead of ChatGPT for planning projects</h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80f7-834f-f51021dcd5a3" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8059-b17e-f64bef57cf3b" class=""><strong>How do you know whether to user Cursor or CLI tools like Codex/Claude?</strong></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8054-91ed-f84eb50a6410" class="">If you’re building personal projects, it simply comes down to preference. Folks that choose Cursor do so because it still gives the IDE feel, which basically means they’ll be able to look at the code that is also being generated in real time. It’s also a flat, $20/month fee.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-803c-a0ab-c0eb9143ca58" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-804a-a8ac-cef4698930ed" class="">Others, exclusively prefer Claude Code / Codex because:</p></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80a0-ac0d-d415917ce4ae" class="numbered-list" start="1"><li>Super easy to use right from the command line</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80e0-b6be-f8dbd36ca1e4" class="numbered-list" start="2"><li>It’s what most developers use</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-802b-b6e2-cac5899ea1ab" class="numbered-list" start="3"><li>Can handle more complex reasoning tasks</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-8039-8813-e33df642659a" class="numbered-list" start="4"><li>Is API based pricing, i.e you don’t pay per month, you pay per token</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-806e-9b47-d50619e2ff73" class="numbered-list" start="5"><li><strong>For Codex: </strong>If you are a ChatGPT Plus user, you already have some Codex credits you can use to get started</li></ol></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-800d-8126-fed53aef2ad6" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80e7-b9fd-cd492b71e64b" class="">My take, use the project example above and try both! The project is simple enough that you can complete in minutes with either tool. Once you’ve tried both, you can then decide for yourself what your primary mode would be moving forward</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80fe-b273-d077475639d3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2df0b470-b010-8013-84ea-c8c9d73f1dfc" class="">Building your <a href="http://PRD.md">PRD.md</a> or spec sheet using Claude Code<br/></h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-808c-87c0-fc47017410f6" class="">The exact same process we outlined earlier could also be used in Claude Code. I used the following version of the prompt (modified it) to build my apps.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80c9-9dfa-eff1e60e3678" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80ff-a225-e10a4425f694" class=""><strong>My modification:</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-803d-8994-dc73e0e52caa" class="numbered-list" start="1"><li>I write out my entire idea as much detail as possible and save it in my project folder called idea.txt (or .md if you’re a markdown fan)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80e7-bdfc-f1df80612e99" class="numbered-list" start="2"><li>I then write an adapted version of the prompt below into cursor itself</li></ol></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8020-ac9d-e59e9b766c3e" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2df0b470-b010-80c4-954f-f9c71a815be4" class="code code-wrap"><code class="language-Markdown" style="white-space:pre-wrap;word-break:break-all">I want you to reference the idea.md file. Use the AskUserQuestionTool to ask me
+questions one by one on anything related to architecture, UX etc. Once done,
+output it as a build plan and call it spec.md. Make sure that in this build plan,
+the plan is split into chunk that are individually testible. The idea is to make
+sure that the probability of bugs later on are as minimal as possible by testing 
+each chunk one at a time. </code></pre></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8002-b557-f0b41a29377e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80ad-88e0-c8be85b271ec" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="2de0b470-b010-8003-b20d-eaad3b70dd29" class="image"><a href="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/Screenshot_2026-01-03_at_6.50.25_PM.png"><img style="width:709.984375px" src="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/Screenshot_2026-01-03_at_6.50.25_PM.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-800d-8a9c-e1bbdc268785" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80f3-9eff-dbc4f8187587" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2de0b470-b010-80db-9630-ea7c223b7ca9" class="">Follow Boris’ (Founder of Claude Code) on CC best practices</h3></div><div style="display:contents" dir="ltr"><figure id="2de0b470-b010-80c4-b13b-d51f2e729613" class="image"><a href="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/Screenshot_2026-01-03_at_7.00.41_PM.png"><img style="width:709.984375px" src="Playbook%20App%20Building%20101+102%20(Advanced%20Vibe%20Codin/Screenshot_2026-01-03_at_7.00.41_PM.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-805b-baf9-c6158dea63fa" class=""><a href="https://x.com/bcherny/status/2007179832300581177/?s=12&amp;t=umeOwd2dxztVtbVMVQtu8w&amp;rw_tt_thread=True&amp;__readwiseLocation=">Link to X thread</a></p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-80ef-b824-ef2d810cddb1" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8009-b9e3-dc645da156ad" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2de0b470-b010-8071-970b-e3a0eec6744f" class="">Github Best Practices</h2></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-809a-a143-ce98673a829d" class="">The best way to think about GitHub is like a Google Drive for your code. If Github didn’t exist, all you code would be on your laptop. This is fine for a simple project, however, when you start to build serious projects, you want to start leveraging Github so it’s cleaner and easier to build out your codebase and connect other services to it.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8040-b938-cc7e11a05fbf" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80eb-a8e7-ec1092825169" class=""><strong>At an ultra basic level, I use it for the following reasons:</strong></p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8018-904a-e441d65f1934" class="bulleted-list"><li style="list-style-type:disc">Safety net: If something breaks, revert to a working version</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-807a-8a80-e7021cbce69d" class="bulleted-list"><li style="list-style-type:disc">Collaboration: Multiple people can work on the same project</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8024-8d28-e2cdf99d8e47" class="bulleted-list"><li style="list-style-type:disc">Deployment: Services like Vercel can automatically deploy from Git</li></ul></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8045-b963-cecf906a2175" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2df0b470-b010-80ff-b884-e718472b9ef9" class="">Best Practice #1: Create a Git Repo</h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8015-9cbe-d77988d230d8" class="">This is basically creating the Google Drive for your code. This is super easy to do. Simply go to github and follow instructions. If stuck, ask GPT for help.</p></div><div style="display:contents" dir="auto"><p id="2de0b470-b010-801a-b2ee-f2e901489556" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2df0b470-b010-8041-91f7-f0b6c2470fb0" class="">Best Practice #2: Commit after every chunk</h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-802d-bd88-d3024b82702e" class="">Think of this practice like playing a video game. You make sure to save at checkpoints so if you die later, you can come back to the checkpoint.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8022-a4a0-e464bced4cbe" class=""><br/>Same idea here, if at any point you code goes haywire, you can always revert back to a checkpoint. The simplest way to do this is to either ask Claude/Cursor to make a commit. You literally just say it verbatim “git commit”</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8064-8480-c2b72799f5e8" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2df0b470-b010-80a2-ac93-c7d362dde705" class="">Best Practice #3: Push when ready</h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8063-ae4f-f3d4c81abb54" class="">When you’re ready to push your updates live, ask the agent to “git push”</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8002-b929-d95fe698aa87" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80d7-9a5a-f4b1ff7e78c1" class="">These are the basics of what you need to know when building basic projects just for yourself. There are other concepts like branching that are helpful. I recommend watching this video to brush up on your git basics.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8019-a053-c51d5a40c63b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8007-b955-f43f40f09aea" class=""><a href="https://www.youtube.com/watch?v=hwP7WQkmECE&amp;t=9s">https://www.youtube.com/watch?v=hwP7WQkmECE&amp;t=9s</a></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8001-aa1d-e988cdc5ddcf" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2df0b470-b010-801d-b4d4-d9b5842080e7" class="">Context Management: Get more out of limited Context</h2></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8049-98e1-c456e95d2405" class=""><strong>The Problem</strong>: AI assistants have limited “memory” in each conversation. Long conversations can exceed context limits.</p></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8008-a5a9-f40a9fb963f3" class=""><strong>The Solution</strong>: Maintain an <code>architecture.md</code> file that documents:</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80d3-9266-f90dbc175c95" class=""><strong>What you’re building</strong></p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-80c6-a96b-c22302b14f31" class="bulleted-list"><li style="list-style-type:disc">Key decisions made</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8001-a028-c24494c3af47" class="bulleted-list"><li style="list-style-type:disc">Current state of the project</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-802d-ac1a-c15683843eb8" class="bulleted-list"><li style="list-style-type:disc">What’s been completed</li></ul></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-809f-b4d3-d9932fa98e47" class=""><strong>How to use it:</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-8009-b661-fcefcd6e296d" class="numbered-list" start="1"><li>Create <code>architecture.md</code> at the start</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80ee-a6b9-d2b00ad4d82e" class="numbered-list" start="2"><li>After each chunk, tell the AI: “Update architecture.md with what we just built”</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-805c-8b9f-d2fddbcf2371" class="numbered-list" start="3"><li>At the start of new sessions, reference the file: “Read architecture.md to understand the current state”</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-8007-92a3-c7a5ccc98d27" class="numbered-list" start="4"><li>This helps the AI maintain context across long development cycles</li></ol></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80f1-aef1-e1b13c79ab65" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-802b-b0d0-da293d689699" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2df0b470-b010-80b0-ab27-cf65847353fa" class="">Structuring your frontend and backend</h2></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8085-a621-c14a2845ac5e" class=""><strong>For small projects (like this journaling app):</strong></p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-80cf-a84a-dfa995bac9ae" class="bulleted-list"><li style="list-style-type:disc">Keep frontend and backend together in one codebase</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8030-8162-c3d772705f14" class="bulleted-list"><li style="list-style-type:disc">Use Next.js API routes for backend logic</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8001-bcad-e2a078842c7e" class="bulleted-list"><li style="list-style-type:disc">Simpler to manage and deploy</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-80d9-8991-cd48bd40f110" class="bulleted-list"><li style="list-style-type:disc">Perfect for single-person or small team projects</li></ul></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-80f6-8fd1-f93fda5b9aa9" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80e1-9123-d7551210c5dd" class=""><strong>For larger projects:</strong></p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-806d-8bf6-cb1ae8fc900e" class="bulleted-list"><li style="list-style-type:disc">Separate frontend and backend repositories</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-806a-a073-d3bdeed17b57" class="bulleted-list"><li style="list-style-type:disc">Better for teams with specialized roles</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-80bf-bb4a-d6ea5b33f64b" class="bulleted-list"><li style="list-style-type:disc">Easier to scale individual services</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8014-bfe5-e28e550d7e30" class="bulleted-list"><li style="list-style-type:disc">More complex deployment and management</li></ul></div><div style="display:contents" dir="auto"><p id="2dd0b470-b010-8016-aec1-f03f522a3509" class=""><strong>Rule of thumb</strong>: Start simple. You can always split later if needed. Do the larger project method if you’re serious about shipping your product to customers </p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-803e-bd72-dad37354d612" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2dd0b470-b010-8041-941f-c2ab9d1bf1c9" class="">❗SUPER important note on security</h3></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8011-845b-d7a463b17249" class="">As soon as your app talks to anything external, a database, an AI model, a payment provider — you’re dealing with credentials that should <em>never</em> live in your code. <code>.env.local</code> is where those values belong. It’s loaded automatically during development, stays out of Git by default, and gives you a clean separation between code and configuration.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8033-9f37-dd48b56df5ca" class="">This is where things like:</p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8004-95b8-d45b8c15cf29" class="bulleted-list"><li style="list-style-type:disc">API keys</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8096-9f18-fac324787ab1" class="bulleted-list"><li style="list-style-type:disc">Database connection strings</li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8037-a91f-e304522cc913" class="bulleted-list"><li style="list-style-type:disc">Any sensitive or environment-specific configuration</li></ul></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80cd-9b8f-fe25922d9a75" class="">should always go. Think of <code>.env.local</code> as the boundary between “things I ship” and “things I protect.”</p></div><div style="display:contents" dir="auto"><hr id="2df0b470-b010-807c-b3c3-d2a2956aa7b3"/></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8066-8682-c404756901ea" class=""><strong>Critical security practices</strong></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-801a-9fde-e62e195dcf7b" class="">These aren’t “best practices” in the abstract — they’re how most accidental breaches actually get avoided.</p></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-806f-9124-fd8af0f0dac8" class="numbered-list" start="1"><li>✅ <strong>Never commit </strong><code><strong>.env.local</strong></code><strong> to Git</strong><div style="display:contents" dir="auto"><p id="2df0b470-b010-80f7-8e2a-d15f6ee82666" class="">It should already be in <code>.gitignore</code>. If it isn’t, fix that immediately. Once a secret is in Git history, assume it’s compromised.</p></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80ce-98fb-ccc29cf765ef" class="numbered-list" start="2"><li>✅ <strong>Never share API keys in screenshots, demos, or chat</strong><div style="display:contents" dir="auto"><p id="2df0b470-b010-80a3-a61b-d7563a721d09" class="">This includes Slack, Notion, screenshots for decks, and screen recordings. Keys leak far more often through humans than through hacks.</p></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-8078-ac45-f482c15c97e6" class="numbered-list" start="3"><li>✅ <strong>Set usage limits on OpenAI API keys</strong><div style="display:contents" dir="auto"><p id="2df0b470-b010-80f6-85b6-c58f169a4748" class="">Do this directly in the OpenAI dashboard. Rate limits and spend caps turn “oops” moments into minor inconveniences instead of expensive incidents.</p></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2df0b470-b010-80e8-b852-e143f7be7a6b" class="numbered-list" start="4"><li>✅ <strong>Use different keys for development vs. production</strong><div style="display:contents" dir="auto"><p id="2df0b470-b010-801d-8969-ca37a1119cde" class="">This limits blast radius. If something leaks locally, your production system shouldn’t be affected.</p></div></li></ol></div><div style="display:contents" dir="auto"><hr id="2df0b470-b010-802e-b601-d39e2a613b75"/></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-800c-9ddf-c2b6dfe4d95b" class=""><strong>Common environment variables</strong></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80c9-834a-d98a865a2f01" class="">Here’s a typical setup you’ll see in a Next.js-style app:</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2df0b470-b010-805f-908d-f510bf093f4f" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
+OPENAI_API_KEY=your_openai_key</code></pre></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-805a-9ff4-d09ca79c5cb2" class="">The key detail to understand here is <strong>scope</strong>.</p></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-80fd-a299-d2bd23d5131b" class="bulleted-list"><li style="list-style-type:disc">Variables prefixed with <code>NEXT_PUBLIC_</code> are exposed to the browser.<div style="display:contents" dir="auto"><p id="2df0b470-b010-80b2-a8c6-caea58904331" class="">Use these only when the client <em>must</em> know the value.</p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2df0b470-b010-8085-86fc-d39e4df480f0" class="bulleted-list"><li style="list-style-type:disc">Variables without that prefix are server-side only.<div style="display:contents" dir="auto"><p id="2df0b470-b010-801e-8d18-f4732b4ef27b" class="">Secrets like <code>OPENAI_API_KEY</code> should <em>always</em> stay here.</p></div></li></ul></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80eb-b18a-fc63eeeb7a06" class="">If you remember nothing else: anything the browser can see should be treated as public.</p></div><div style="display:contents" dir="auto"><hr id="2df0b470-b010-8065-bbff-d390965b83f8"/></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80ff-afd8-eb9bbd249850" class=""><strong>Protecting against vulnerabilities (the practical way)</strong></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8048-a485-d31120a15ba9" class="">Even if you handle secrets correctly, vulnerabilities can still creep in through logic errors, dependencies, or unsafe patterns. One of the simplest, highest-leverage moves you can make is to <strong>ask Claude Code to analyze your codebase for security issues</strong>.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8040-800a-d4880a455eb6" class="">A prompt as simple as:</p></div><div style="display:contents" dir="auto"><blockquote id="2df0b470-b010-8079-a07b-e9d3ca1bbc69" class="">“Review this repository for common web application vulnerabilities, insecure patterns, and dependency risks. Suggest fixes.”</blockquote></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80eb-bb33-f3bc620e947c" class="">will often catch things humans miss — especially in fast-moving AI projects.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8039-9f29-f571c1d41762" class="">This doesn’t replace real security audits, but it’s an extremely strong baseline for solo builders and small teams.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8009-8a0f-d423cddf2858" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80d6-b03c-e22d2337cb7b" class=""><strong>For those who want to go deeper</strong></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80f4-b62f-e8e73648cf3c" class="">If you’re genuinely interested in cybersecurity — not just avoiding mistakes, but understanding <em>how</em> vulnerabilities are found — this write-up is excellent:</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-80c9-a5b8-d872ea335825" class=""><a href="https://alexschapiro.com/security/vulnerability/2025/11/20/avelo-airline-reservation-api-vulnerability">https://alexschapiro.com/security/vulnerability/2025/11/20/avelo-airline-reservation-api-vulnerability</a></p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8081-bf61-f4a65b0eea5f" class="">It walks through a real-world API vulnerability end to end, and it’s exactly the kind of thinking that sharpens your instincts as a builder.</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8008-93ce-d2e815ed77be" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df0b470-b010-8094-99df-d47d940f2d94" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2df0b470-b010-8044-846c-f2f1273d4e4d" class="">fin.</h3></div><div style="display:contents" dir="auto"><p id="2e70b470-b010-806a-80bf-d6de65c4bdb9" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
