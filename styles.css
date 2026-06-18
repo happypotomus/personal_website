@@ -227,6 +227,19 @@ h3 {
     font-size: 1rem;
 }
 
+.essay-content a {
+    color: #37352f;
+    text-decoration: underline;
+    text-decoration-color: #d1d1d1;
+    text-underline-offset: 2px;
+    transition: all 0.2s ease;
+}
+
+.essay-content a:hover {
+    color: #6b6b6b;
+    text-decoration-color: #6b6b6b;
+}
+
 .essay-intro {
     font-size: 1.1rem;
     color: #37352f;

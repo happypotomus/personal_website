@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>build log - pranav</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="essay-header">
+            <a href="index.html" class="back-link">&lt; back home</a>
+            <h1>build log</h1>
+            <div class="essay-meta">
+                <span>a daily record of what i'm building, learning, and exploring.</span>
+            </div>
+        </header>
+
+        <main class="essay-content">
+            <article>
+                <h2>june 18, 2026</h2>
+                <p class="essay-intro">scoping small-molecule diffusion for drug discovery</p>
+                <p>
+                    today i spent 2.5 hours scoping a small-molecule diffusion project for drug design: a google colab notebook that generates 3d molecular conformers from smiles, adds gaussian noise to atom coordinates, and trains models to denoise them.
+                </p>
+                <p>
+                    the project starts with an mlp baseline, then upgrades to a simple graph neural network so the model can use molecular bond structure, with visualizations and metrics like rmsd and bond-length error to compare clean, noisy, and denoised conformers.
+                </p>
+                <p>
+                    after talking to divyun, another interesting area to possibly look into is protein diffusion models. that feels like a natural next direction once the small-molecule version is clearer.
+                </p>
+                <p>
+                    i also still have a curiosity about rag pipelines coming out of yesterday's embeddings workshop, so that may be another thread to explore soon.
+                </p>
+                <p>
+                    <a href="https://colab.research.google.com/github/happypotomus/diffusion_drug_design/blob/main/molecular_conformer_diffusion_denoising.ipynb" target="_blank" rel="noopener">open the colab notebook</a>
+                    <br>
+                    <a href="https://youtube.com/live/MH9nQ-N3Evg?feature=share" target="_blank" rel="noopener">watch the build session</a>
+                </p>
+
+                <h2>june 17, 2026</h2>
+                <p class="essay-intro">rag and embeddings workshop at the ai science summit</p>
+                <p>
+                    today i was in san francisco for the ai science summit and got to meet with a deepmind engineer who led us through a foundational rag and embeddings workshop.
+                </p>
+                <p>
+                    we went into the mechanics of taking data from documents, embedding that data, and then working with google's embedding models to run queries over it.
+                </p>
+                <p>
+                    <a href="https://colab.research.google.com/drive/1-m1VvqEpjQOmy-_RrpRsBPDIcdQPhgIA?usp=sharing" target="_blank" rel="noopener">open the colab notebook</a>
+                </p>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
