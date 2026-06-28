@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>understanding technical roadblocks to agi - pranav</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="essay-header">
+            <a href="index.html" class="back-link">&lt; back to writings</a>
+            <h1>understanding technical roadblocks to agi</h1>
+            <div class="essay-meta">
+                <span class="date">june 27, 2026</span>
+                <span class="reading-time">~7 min read</span>
+            </div>
+        </header>
+
+        <main class="essay-content">
+            <article>
+                <p class="essay-intro">
+                    lately, i've been quite interested in the underlying architecture of how most llm-based systems work.
+                </p>
+
+                <p>As I explore this, the topic of Artificial General Intelligence is becoming more interesting, less from the "impact on the economy" angle and more from a "what are the technical roadblocks that prevent us from getting to AGI" angle. I'm finding it a very helpful thought experiment to deepen my understanding of the different layers of the AI stack.</p>
+
+                <div class="quote-block">
+                    <blockquote>
+                        <p>AGI is a system that can autonomously acquire and apply new knowledge to solve essentially any economically valuable cognitive task at roughly human efficiency, without requiring task-specific redesign.</p>
+                    </blockquote>
+                </div>
+
+                <p>By this definition, if we had AGI, it should be able to autonomously execute on the following scenarios without human intervention.</p>
+
+                <p>"Develop a drug to solve osteosarcoma"</p>
+
+                <p>"Run this Startup and make $1M in MRR"</p>
+
+                <p>They might sound a bit silly, but I think it serves as an interesting thought experiment on what would need to happen for AI to be able to perform these tasks without humans involved.</p>
+
+                <p>I took a first pass at trying to answer this question with the following take (which I later understood was not quite accurate):</p>
+
+                <p>My initial take was that the core technical capabilities of AGI already exist, the issue is more so an engineering and harness problem. Kind of like quantum computing, where the underlying physics is largely understood but engineering it reliably at scale remains the hard part.</p>
+
+                <p>Specifically, I thought if we threw unlimited tokens at a goal and gave the AI all the "context required" it should be able to exhibit AGI-like attributes.</p>
+
+                <p>However, this only works for a narrower definition of AGI in more deterministic domains. Then it really isn't AGI.</p>
+
+                <p>Back to the question, what needs to happen?</p>
+
+                <h2>Continual Learning</h2>
+
+                <p>When human beings learn something like neurosurgery, they don't just have "context or memories", they have understanding i.e the brain almost "reorganizes itself" in the process of developing an understanding of the field. In more technical terms, the brain's synaptic connections strengthen and weaken as the person develops an understanding of that field.</p>
+
+                <p>LLMs learn during training, and the weights basically freeze. This means every new conversation or new fact doesn't impact the model's weights after training.</p>
+
+                <p>Well, what about RAG? (Retrieval Augmented Generation: where it can source documents from that domain and give an answer) Can't the core intelligence model use the information received from RAG to think through important problems.</p>
+
+                <p>Turns out, not really.</p>
+
+                <p>The analogy for RAG to understand why it doesn't quite work is to think about a human having a bunch of textbooks around them. If a normal person got those textbooks on neurosurgery, they may be able to learn what the concepts are and where they are located in the textbooks, but they would likely not be able to perform surgery tomorrow. However if a doctor had access to textbooks/reports etc, he would be much more effective at performing that surgery.</p>
+
+                <p>This remains an unsolved problem, though there's active research attacking it from multiple angles.</p>
+
+                <h2>Long Horizon Tasks</h2>
+
+                <p>What current systems are good at are individual steps but fall apart as the time horizon of the task gets longer. Every year, this time horizon continues to increase, but the question is would it be able to operate over months? years?</p>
+
+                <p>Fundamentally, LLMs work on the principle of "Given everything I've seen so far, what should the next token be?"</p>
+
+                <p>It doesn't really hold a persistent state of memory or plans. For example, agentic coding tools that keep working until a goal is met still follow the same principle. The longer they work, the longer they hold memory / context.</p>
+
+                <p>Perhaps there are clever ways to engineer the system so you compact context or stage gate access to certain context. However, I doubt we're able to push the engineering enough for it to last beyond days, maybe max a month.</p>
+
+                <p>Even if it's able to keep memory, the other problem is knowing when to autonomously course correct and rethink strategy as it's executing on the goal. Humans aren't perfect at this either, but current AI systems are considerably more brittle when the environment shifts mid-task.</p>
+
+                <h2>Reliability</h2>
+
+                <p>When you convert text into an embedding, you're mapping it to a point in a very high dimensional space. A typical embedding model produces vectors anywhere from 768 to 3000+ dimensions, depending on the model. Each dimension loosely corresponds to some learned feature of meaning.</p>
+
+                <p>The standard way to measure closeness in this space isn't Euclidean distance (straight line between two points). It's cosine similarity, the angle between two vectors.</p>
+
+                <p>Why angle and not distance? Because you care about direction, not magnitude. A short document and a long document about the same topic should be "close" even if their vectors have very different lengths.</p>
+
+                <p>Now here's the crowding problem as we increase context or horizon time.</p>
+
+                <p>In low dimensions, similarity is meaningful. In 2D or 3D, if two points are close, they're genuinely similar. There's enough space for things to spread out. In high dimensions, something strange happens. This is called the curse of dimensionality.</p>
+
+                <p>As you add dimensions, the volume of the space grows exponentially. But your data points don't grow at the same rate. So everything ends up roughly the same distance from everything else under Euclidean distance. Cosine similarity handles this better by normalizing for magnitude, but it has its own limits: the embedding model itself has finite resolution, meaning it can only represent so much semantic nuance before different concepts start bleeding together in the same region of the space.</p>
+
+                <p>This creates problems for RAG/context systems because when asked "which stored vectors are closest to this query vector?", the signal gets noisy:</p>
+
+                <p>Many semantically unrelated chunks end up with nearly the same cosine similarity to your query. The ranking between "relevant" and "somewhat relevant" becomes unreliable.</p>
+
+                <h2>Can these be solved?</h2>
+
+                <p>I like how Elon thinks about most problems, and it's quite simple. If it doesn't break the laws of physics, it's possible.</p>
+
+                <p>The question really becomes, which of these are physics problems and which are engineering problems?</p>
+
+                <p>Continual learning sits closer to the science end. There is no widely accepted mechanism for how a model updates from experience without overwriting what it already knew. That said, the biological brain does solve this, so it's hard to call it impossible.</p>
+
+                <p>Long-horizon autonomy is a mix of both. We've worked through lots of engineering challenges here with agentic systems as it relates to chaining steps, managing context, tool calls etc. I'd like to personally think it's sitting more as an engineering challenge. I've come to see some really interesting agentic harness setups that can better rethink strategy as the AI is executing midway, while maintaining a stable goal representation as the environment shifts towards the task.</p>
+
+                <p>Reliability in high-dimensional retrieval is leaning more toward a fundamental constraint. There are smart ways to chunk, retrieve and process information. However the leap from time horizons going from days to years is a much harder problem, and how much of that is solvable through better architecture versus hitting a ceiling is still an open question.</p>
+
+                <p>I guess the real question is will this be solved in 10 years? Well, if our biological brain was able to solve all 3, I'm willing to bet the answer is yes.</p>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

@@ -58,6 +58,20 @@ h3 {
 }
 
 /* Writings section */
+.writing-group {
+    margin-bottom: 2rem;
+}
+
+.writing-group:last-child {
+    margin-bottom: 0;
+}
+
+.writing-description {
+    color: #6b6b6b;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
 .writings-list {
     display: flex;
     flex-direction: column;
