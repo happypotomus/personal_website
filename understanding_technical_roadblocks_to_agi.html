@@ -20,10 +20,10 @@
             </div>
         </header>
 
-        <main class="essay-content">
+        <main class="essay-content preserve-case">
             <article>
                 <p class="essay-intro">
-                    lately, i've been quite interested in the underlying architecture of how most llm-based systems work.
+                    Lately, I've been quite interested in the underlying architecture of how most LLM-based systems work.
                 </p>
 
                 <p>As I explore this, the topic of Artificial General Intelligence is becoming more interesting, less from the "impact on the economy" angle and more from a "what are the technical roadblocks that prevent us from getting to AGI" angle. I'm finding it a very helpful thought experiment to deepen my understanding of the different layers of the AI stack.</p>
@@ -38,7 +38,7 @@
 
                 <p>"Develop a drug to solve osteosarcoma"</p>
 
-                <p>"Run this Startup and make $1M in MRR"</p>
+                <p>"Run this startup and make $1M in MRR"</p>
 
                 <p>They might sound a bit silly, but I think it serves as an interesting thought experiment on what would need to happen for AI to be able to perform these tasks without humans involved.</p>
 
@@ -58,17 +58,17 @@
 
                 <p>LLMs learn during training, and the weights basically freeze. This means every new conversation or new fact doesn't impact the model's weights after training.</p>
 
-                <p>Well, what about RAG? (Retrieval Augmented Generation: where it can source documents from that domain and give an answer) Can't the core intelligence model use the information received from RAG to think through important problems.</p>
+                <p>Well, what about RAG? (Retrieval-augmented generation: where it can source documents from that domain and give an answer) Can't the core intelligence model use the information received from RAG to think through important problems?</p>
 
                 <p>Turns out, not really.</p>
 
-                <p>The analogy for RAG to understand why it doesn't quite work is to think about a human having a bunch of textbooks around them. If a normal person got those textbooks on neurosurgery, they may be able to learn what the concepts are and where they are located in the textbooks, but they would likely not be able to perform surgery tomorrow. However if a doctor had access to textbooks/reports etc, he would be much more effective at performing that surgery.</p>
+                <p>The analogy for RAG to understand why it doesn't quite work is to think about a human having a bunch of textbooks around them. If a normal person got those textbooks on neurosurgery, they may be able to learn what the concepts are and where they are located in the textbooks, but they would likely not be able to perform surgery tomorrow. However, if a doctor had access to textbooks/reports, etc., he would be much more effective at performing that surgery.</p>
 
                 <p>This remains an unsolved problem, though there's active research attacking it from multiple angles.</p>
 
-                <h2>Long Horizon Tasks</h2>
+                <h2>Long-Horizon Tasks</h2>
 
-                <p>What current systems are good at are individual steps but fall apart as the time horizon of the task gets longer. Every year, this time horizon continues to increase, but the question is would it be able to operate over months? years?</p>
+                <p>What current systems are good at are individual steps but fall apart as the time horizon of the task gets longer. Every year, this time horizon continues to increase, but the question is whether it would be able to operate over months or years.</p>
 
                 <p>Fundamentally, LLMs work on the principle of "Given everything I've seen so far, what should the next token be?"</p>
 
@@ -96,7 +96,7 @@
 
                 <p>Many semantically unrelated chunks end up with nearly the same cosine similarity to your query. The ranking between "relevant" and "somewhat relevant" becomes unreliable.</p>
 
-                <h2>Can these be solved?</h2>
+                <h2>Can These Be Solved?</h2>
 
                 <p>I like how Elon thinks about most problems, and it's quite simple. If it doesn't break the laws of physics, it's possible.</p>
 
@@ -104,7 +104,7 @@
 
                 <p>Continual learning sits closer to the science end. There is no widely accepted mechanism for how a model updates from experience without overwriting what it already knew. That said, the biological brain does solve this, so it's hard to call it impossible.</p>
 
-                <p>Long-horizon autonomy is a mix of both. We've worked through lots of engineering challenges here with agentic systems as it relates to chaining steps, managing context, tool calls etc. I'd like to personally think it's sitting more as an engineering challenge. I've come to see some really interesting agentic harness setups that can better rethink strategy as the AI is executing midway, while maintaining a stable goal representation as the environment shifts towards the task.</p>
+                <p>Long-horizon autonomy is a mix of both. We've worked through lots of engineering challenges here with agentic systems as it relates to chaining steps, managing context, tool calls, etc. I'd like to personally think it's sitting more as an engineering challenge. I've come to see some really interesting agentic harness setups that can better rethink strategy as the AI is executing midway, while maintaining a stable goal representation as the environment shifts towards the task.</p>
 
                 <p>Reliability in high-dimensional retrieval is leaning more toward a fundamental constraint. There are smart ways to chunk, retrieve and process information. However the leap from time horizons going from days to years is a much harder problem, and how much of that is solvable through better architecture versus hitting a ceiling is still an open question.</p>
 

@@ -236,6 +236,11 @@ h3 {
     text-transform: lowercase;
 }
 
+.essay-content.preserve-case h2,
+.essay-content.preserve-case h3 {
+    text-transform: none;
+}
+
 .essay-content p {
     margin-bottom: 1.5rem;
     font-size: 1rem;
