@@ -259,11 +259,11 @@ h3 {
     text-decoration-color: #6b6b6b;
 }
 
-.build-log-image {
+.learn-log-image {
     margin: 1rem 0 1.5rem;
 }
 
-.build-log-image img {
+.learn-log-image img {
     display: block;
     width: 100%;
     border-radius: 6px;
