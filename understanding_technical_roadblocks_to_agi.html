@@ -110,17 +110,33 @@
 
                 <h2>Can These Be Solved?</h2>
 
-                <p>I like how Elon thinks about most problems, and it's quite simple. If it doesn't break the laws of physics, it's possible.</p>
+                <p>I like how Elon thinks about most problems, and it's quite simple: if it doesn't break the laws of physics, it's possible.</p>
 
-                <p>The question really becomes, which of these are physics problems and which are engineering problems?</p>
+                <p>The harder question is: which of these are physics problems, which are science problems, and which are engineering problems?</p>
 
-                <p>Continual learning sits closer to the science end. There is no widely accepted mechanism for how a model updates from experience without overwriting what it already knew. That said, the biological brain does solve this, so it's hard to call it impossible.</p>
+                <p>Continual learning sits closest to the science end. The problem is not that models technically cannot update their weights. They can. The problem is that there is no widely accepted mechanism for how a model should continuously learn from experience without corrupting what it already knows.</p>
 
-                <p>Long-horizon autonomy is a mix of both. We've worked through lots of engineering challenges here with agentic systems as it relates to chaining steps, managing context, tool calls, etc. I'd like to personally think it's sitting more as an engineering challenge. I've come to see some really interesting agentic harness setups that can better rethink strategy as the AI is executing midway, while maintaining a stable goal representation as the environment shifts towards the task.</p>
+                <p>A model can read every neurosurgery textbook ever written and still not become a neurosurgeon. It may become better at explaining neurosurgery, summarizing procedures, using the right terminology, and answering exam-style questions. But that is not the same thing as skill formation.</p>
 
-                <p>Reliability in high-dimensional retrieval is leaning more toward a fundamental constraint. There are smart ways to chunk, retrieve and process information. However the leap from time horizons going from days to years is a much harder problem, and how much of that is solvable through better architecture versus hitting a ceiling is still an open question.</p>
+                <p>That kind of expertise comes from feedback loops. You try, you fail, you get corrected, you see consequences, and over time your internal model changes. Current LLMs do not really do that. They can use new information in context, and RAG can give them access to more information, but access is not the same as internalized capability. Once the context disappears, the model has not necessarily changed.</p>
 
-                <p>I guess the real question is will this be solved in 10 years? Well, if our biological brain was able to solve all 3, I'm willing to bet the answer is yes.</p>
+                <p>So continual learning is not "just let the weights update." The model would need to know what is worth learning, what should be ignored, what is generally true, what is user-specific, how much to update, and how to avoid forgetting older capabilities. The human brain does solve some version of this, so it is hard to call it impossible. But it remains a science problem.</p>
+
+                <p>Long-horizon autonomy feels more like a mix of science and engineering, but I'd place it closer to engineering. We are already seeing meaningful progress here with agentic systems: chaining steps, managing context, using tools, writing intermediate plans, checking outputs, and rethinking strategy midway through execution. The better systems are starting to look less like a single model call and more like an operating loop: plan, act, observe, critique, re-plan, and continue.</p>
+
+                <p>The open question is whether these scaffolds can remain stable over very long time horizons. It is one thing for an agent to complete a 20-step coding task. It is another thing for it to pursue a goal over weeks, recover from unexpected failures, notice when its plan is wrong, and not slowly drift away from the original objective. Still, this feels like the kind of problem where better architecture, better evals, better memory systems, and better tool use can compound quickly.</p>
+
+                <p>Reliability in high-dimensional retrieval feels more like a fundamental constraint, or at least the least obviously solvable one. There are clever ways to chunk, embed, retrieve, re-rank, summarize, and process information. But retrieving the right information from a giant knowledge space is not trivial, especially when the thing you need is not obviously keyword-matched, when the relevant detail is buried in a long document, or when the answer requires connecting weak signals across time.</p>
+
+                <p>This becomes even harder as the time horizon stretches from minutes to days, months, or years. A model might retrieve the right document today, but can it maintain a coherent understanding of a project over a year? Can it remember which facts are stale, which decisions were reversed, which assumptions were invalidated, and which details matter now? Some of this will be solved through better architecture. Some of it may run into deeper limits around compression, context, memory, and search.</p>
+
+                <p>So will all of this be solved in the next 10 years?</p>
+
+                <p>My instinct is yes, but with an important caveat. The fact that the biological brain solves these problems means they are not impossible in principle. Humans do continual learning, long-horizon autonomy, and high-dimensional retrieval every day. We learn from experience, pursue goals over years, and pull the right memories into consciousness when they matter.</p>
+
+                <p>But the brain did not solve these problems with a bigger context window and a vector database. It solved them through a very different architecture: embodiment, reward, emotion, attention, sleep, memory consolidation, forgetting, motor feedback, and constant interaction with the world.</p>
+
+                <p>So I do think these problems are solvable. I just don't think the answer is simply "scale the current thing." My guess is that AGI requires more than bigger models. It likely requires new systems around models: memory, agency, feedback, self-correction, continual learning, and some way of turning experience into durable capability.</p>
             </article>
         </main>
     </div>
