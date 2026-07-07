@@ -56,7 +56,7 @@
 
                 <h2>Continual Learning</h2>
 
-                <p>When human beings learn something like neurosurgery, they don't just have "context or memories", they have understanding i.e the brain almost "reorganizes itself" in the process of developing an understanding of the field. In more technical terms, the brain's synaptic connections strengthen and weaken as the person develops an understanding of that field.</p>
+                <p>When human beings learn something hard, they don't just collect "context" or memories. They build understanding. The brain almost reorganizes itself in the process of developing competence. In more technical terms, synaptic connections strengthen and weaken as a person develops an internal model of a field.</p>
 
                 <p>LLMs learn during training, and the weights basically freeze. This means every new conversation or new fact doesn't impact the model's weights after training.</p>
 
@@ -68,13 +68,13 @@
 
                 <p>A helpful analogy is neurosurgery. If you gave a normal person every neurosurgery textbook ever written, they might learn the terminology, understand the broad concepts, and even answer some exam-style questions. But they would not be able to perform surgery tomorrow. The real bottleneck is how information is translated to internal skill.</p>
 
-                <p>A neurosurgeon is not just someone with more facts in memory. A neurosurgeon has developed a compressed, experience-shaped model of anatomy, pathology, tissue behavior, motor control, risk, and real-time decision-making. They have seen enough cases to know which details matter, when a plan is failing, when anatomy is distorted, when to continue, and when to stop. That expertise is built through years of supervised feedback loops, not just reading.</p>
+                <p>A neurosurgeon is not just someone with more facts in memory. They have developed a compressed, experience-shaped model of anatomy, pathology, tissue behavior, motor control, risk, and real-time decision-making. They have seen enough cases to know which details matter, when a plan is failing, when anatomy is distorted, when to continue, and when to stop. That expertise is built through years of supervised feedback loops, not just reading.</p>
 
                 <p>This is the gap between RAG and continual learning.</p>
 
                 <p>RAG gives the model an external library. It can retrieve relevant passages and use them inside the current context window. That makes the model more informed in the moment, but it does not necessarily make the model more capable after the moment. Once the context disappears, the model's underlying weights have not changed. The information was available, but not internalized.</p>
 
-                <p>Fine-tuning gets closer, but even fine-tuning on neurosurgery textbooks mostly teaches the model to predict neurosurgery-like text. It may become better at explaining procedures, using terminology, summarizing papers, and imitating clinical reasoning. But that is still different from learning the underlying skill. Real expertise requires interaction with the world: attempts, errors, corrections, consequences, and feedback. In surgery, the feedback signal is not "did you predict the next word correctly?" It is "did the patient outcome improve, did you preserve function, did you avoid unnecessary damage, did you respond correctly when reality deviated from the plan?"</p>
+                <p>Fine-tuning gets closer, but even fine-tuning on textbooks mostly teaches the model to predict domain-specific text. It may become better at explaining procedures, using terminology, summarizing papers, and imitating clinical reasoning. But that is still different from learning the underlying skill. Real expertise requires interaction with the world: attempts, errors, corrections, consequences, and feedback. In surgery, the feedback signal is not "did you predict the next word correctly?" It is "did the patient outcome improve, did you preserve function, did you avoid unnecessary damage, did you respond correctly when reality deviated from the plan?"</p>
 
                 <p>That is why continual learning is hard. The challenge is not merely letting the model update its weights. The challenge is knowing what should cause an update, which parts of the model should change, how much they should change, and how to prevent the new learning from corrupting older capabilities.</p>
 
@@ -118,7 +118,7 @@
 
                 <p>Continual learning sits closest to the science end. The problem is not that models technically cannot update their weights. They can. The problem is that there is no widely accepted mechanism for how a model should continuously learn from experience without corrupting what it already knows.</p>
 
-                <p>A model can read every neurosurgery textbook ever written and still not become a neurosurgeon. It may become better at explaining neurosurgery, summarizing procedures, using the right terminology, and answering exam-style questions. But that is not the same thing as skill formation.</p>
+                <p>This is why skill formation matters so much. A model can become better at explaining a domain, summarizing procedures, using the right terminology, and answering exam-style questions. But that is still not the same thing as developing competence.</p>
 
                 <p>That kind of expertise comes from feedback loops. You try, you fail, you get corrected, you see consequences, and over time your internal model changes. Current LLMs do not really do that. They can use new information in context, and RAG can give them access to more information, but access is not the same as internalized capability. Once the context disappears, the model has not necessarily changed.</p>
 
