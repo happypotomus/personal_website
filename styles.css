@@ -311,6 +311,18 @@ h3 {
     color: #37352f;
 }
 
+.thread-list {
+    padding-left: 1.5rem;
+}
+
+.thread-list li {
+    margin-bottom: 2rem;
+}
+
+.thread-list li p {
+    margin-bottom: 0.75rem;
+}
+
 .essay-content hr {
     border: none;
     border-top: 1px solid #e8e8e8;
